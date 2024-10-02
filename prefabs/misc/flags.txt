@@ -1,0 +1,262 @@
+🇦🇫 	Afghanistan 	copy 	U+1F1E6 U+1F1EB
+🇦🇽 	Åland Islands 	copy 	U+1F1E6 U+1F1FD
+🇦🇱 	Albania 	copy 	U+1F1E6 U+1F1F1
+🇩🇿 	Algeria 	copy 	U+1F1E9 U+1F1FF
+🇦🇸 	American Samoa 	copy 	U+1F1E6 U+1F1F8
+🇦🇩 	Andorra 	copy 	U+1F1E6 U+1F1E9
+🇦🇴 	Angola 	copy 	U+1F1E6 U+1F1F4
+🇦🇮 	Anguilla 	copy 	U+1F1E6 U+1F1EE
+🇦🇶 	Antarctica 	copy 	U+1F1E6 U+1F1F6
+🇦🇬 	Antigua and Barbuda 	copy 	U+1F1E6 U+1F1EC
+🇦🇷 	Argentina 	copy 	U+1F1E6 U+1F1F7
+🇦🇲 	Armenia 	copy 	U+1F1E6 U+1F1F2
+🇦🇼 	Aruba 	copy 	U+1F1E6 U+1F1FC
+🇦🇺 	Australia 	copy 	U+1F1E6 U+1F1FA
+🇦🇹 	Austria 	copy 	U+1F1E6 U+1F1F9
+🇦🇿 	Azerbaijan 	copy 	U+1F1E6 U+1F1FF
+🇧🇸 	Bahamas 	copy 	U+1F1E7 U+1F1F8
+🇧🇭 	Bahrain 	copy 	U+1F1E7 U+1F1ED
+🇧🇩 	Bangladesh 	copy 	U+1F1E7 U+1F1E9
+🇧🇧 	Barbados 	copy 	U+1F1E7 U+1F1E7
+🇧🇾 	Belarus 	copy 	U+1F1E7 U+1F1FE
+🇧🇪 	Belgium 	copy 	U+1F1E7 U+1F1EA
+🇧🇿 	Belize 	copy 	U+1F1E7 U+1F1FF
+🇧🇯 	Benin 	copy 	U+1F1E7 U+1F1EF
+🇧🇲 	Bermuda 	copy 	U+1F1E7 U+1F1F2
+🇧🇹 	Bhutan 	copy 	U+1F1E7 U+1F1F9
+🇧🇴 	Bolivia 	copy 	U+1F1E7 U+1F1F4
+🇧🇦 	Bosnia and Herzegovina 	copy 	U+1F1E7 U+1F1E6
+🇧🇼 	Botswana 	copy 	U+1F1E7 U+1F1FC
+🇧🇻 	Bouvet Island 	copy 	U+1F1E7 U+1F1FB
+🇧🇷 	Brazil 	copy 	U+1F1E7 U+1F1F7
+🇮🇴 	British Indian Ocean Territory 	copy 	U+1F1EE U+1F1F4
+🇧🇳 	Brunei 	copy 	U+1F1E7 U+1F1F3
+🇧🇬 	Bulgaria 	copy 	U+1F1E7 U+1F1EC
+🇧🇫 	Burkina Faso 	copy 	U+1F1E7 U+1F1EB
+🇧🇮 	Burundi 	copy 	U+1F1E7 U+1F1EE
+🇰🇭 	Cambodia 	copy 	U+1F1F0 U+1F1ED
+🇨🇲 	Cameroon 	copy 	U+1F1E8 U+1F1F2
+🇨🇦 	Canada 	copy 	U+1F1E8 U+1F1E6
+🇨🇻 	Cape Verde 	copy 	U+1F1E8 U+1F1FB
+🇧🇶 	Caribbean Netherlands 	copy 	U+1F1E7 U+1F1F6
+🇰🇾 	Cayman Islands 	copy 	U+1F1F0 U+1F1FE
+🇨🇫 	Central African Republic 	copy 	U+1F1E8 U+1F1EB
+🇹🇩 	Chad 	copy 	U+1F1F9 U+1F1E9
+🇨🇱 	Chile 	copy 	U+1F1E8 U+1F1F1
+🇨🇳 	China 	copy 	U+1F1E8 U+1F1F3
+🇨🇽 	Christmas Island 	copy 	U+1F1E8 U+1F1FD
+🇨🇨 	Cocos (Keeling) Islands 	copy 	U+1F1E8 U+1F1E8
+🇨🇴 	Colombia 	copy 	U+1F1E8 U+1F1F4
+🇰🇲 	Comoros 	copy 	U+1F1F0 U+1F1F2
+🇨🇬 	Republic of the Congo 	copy 	U+1F1E8 U+1F1EC
+🇨🇩 	DR Congo 	copy 	U+1F1E8 U+1F1E9
+🇨🇰 	Cook Islands 	copy 	U+1F1E8 U+1F1F0
+🇨🇷 	Costa Rica 	copy 	U+1F1E8 U+1F1F7
+🇨🇮 	Côte d'Ivoire (Ivory Coast) 	copy 	U+1F1E8 U+1F1EE
+🇭🇷 	Croatia 	copy 	U+1F1ED U+1F1F7
+🇨🇺 	Cuba 	copy 	U+1F1E8 U+1F1FA
+🇨🇼 	Curaçao 	copy 	U+1F1E8 U+1F1FC
+🇨🇾 	Cyprus 	copy 	U+1F1E8 U+1F1FE
+🇨🇿 	Czechia 	copy 	U+1F1E8 U+1F1FF
+🇩🇰 	Denmark 	copy 	U+1F1E9 U+1F1F0
+🇩🇯 	Djibouti 	copy 	U+1F1E9 U+1F1EF
+🇩🇲 	Dominica 	copy 	U+1F1E9 U+1F1F2
+🇩🇴 	Dominican Republic 	copy 	U+1F1E9 U+1F1F4
+🇪🇨 	Ecuador 	copy 	U+1F1EA U+1F1E8
+🇪🇬 	Egypt 	copy 	U+1F1EA U+1F1EC
+🇸🇻 	El Salvador 	copy 	U+1F1F8 U+1F1FB
+🏴󠁧󠁢󠁥󠁮󠁧󠁿 	England 	copy 	U+1F3F4 U+E0067
+U+E0062 U+E0065
+U+E006E U+E0067
+U+E007F
+🇬🇶 	Equatorial Guinea 	copy 	U+1F1EC U+1F1F6
+🇪🇷 	Eritrea 	copy 	U+1F1EA U+1F1F7
+🇪🇪 	Estonia 	copy 	U+1F1EA U+1F1EA
+🇸🇿 	Eswatini (Swaziland) 	copy 	U+1F1F8 U+1F1FF
+🇪🇹 	Ethiopia 	copy 	U+1F1EA U+1F1F9
+🇫🇰 	Falkland Islands 	copy 	U+1F1EB U+1F1F0
+🇫🇴 	Faroe Islands 	copy 	U+1F1EB U+1F1F4
+🇫🇯 	Fiji 	copy 	U+1F1EB U+1F1EF
+🇫🇮 	Finland 	copy 	U+1F1EB U+1F1EE
+🇫🇷 	France 	copy 	U+1F1EB U+1F1F7
+🇬🇫 	French Guiana 	copy 	U+1F1EC U+1F1EB
+🇵🇫 	French Polynesia 	copy 	U+1F1F5 U+1F1EB
+🇹🇫 	French Southern and Antarctic Lands 	copy 	U+1F1F9 U+1F1EB
+🇬🇦 	Gabon 	copy 	U+1F1EC U+1F1E6
+🇬🇲 	Gambia 	copy 	U+1F1EC U+1F1F2
+🇬🇪 	Georgia 	copy 	U+1F1EC U+1F1EA
+🇩🇪 	Germany 	copy 	U+1F1E9 U+1F1EA
+🇬🇭 	Ghana 	copy 	U+1F1EC U+1F1ED
+🇬🇮 	Gibraltar 	copy 	U+1F1EC U+1F1EE
+🇬🇷 	Greece 	copy 	U+1F1EC U+1F1F7
+🇬🇱 	Greenland 	copy 	U+1F1EC U+1F1F1
+🇬🇩 	Grenada 	copy 	U+1F1EC U+1F1E9
+🇬🇵 	Guadeloupe 	copy 	U+1F1EC U+1F1F5
+🇬🇺 	Guam 	copy 	U+1F1EC U+1F1FA
+🇬🇹 	Guatemala 	copy 	U+1F1EC U+1F1F9
+🇬🇬 	Guernsey 	copy 	U+1F1EC U+1F1EC
+🇬🇳 	Guinea 	copy 	U+1F1EC U+1F1F3
+🇬🇼 	Guinea-Bissau 	copy 	U+1F1EC U+1F1FC
+🇬🇾 	Guyana 	copy 	U+1F1EC U+1F1FE
+🇭🇹 	Haiti 	copy 	U+1F1ED U+1F1F9
+🇭🇲 	Heard Island and McDonald Islands 	copy 	U+1F1ED U+1F1F2
+🇭🇳 	Honduras 	copy 	U+1F1ED U+1F1F3
+🇭🇰 	Hong Kong 	copy 	U+1F1ED U+1F1F0
+🇭🇺 	Hungary 	copy 	U+1F1ED U+1F1FA
+🇮🇸 	Iceland 	copy 	U+1F1EE U+1F1F8
+🇮🇳 	India 	copy 	U+1F1EE U+1F1F3
+🇮🇩 	Indonesia 	copy 	U+1F1EE U+1F1E9
+🇮🇷 	Iran 	copy 	U+1F1EE U+1F1F7
+🇮🇶 	Iraq 	copy 	U+1F1EE U+1F1F6
+🇮🇪 	Ireland 	copy 	U+1F1EE U+1F1EA
+🇮🇲 	Isle of Man 	copy 	U+1F1EE U+1F1F2
+🇮🇱 	Israel 	copy 	U+1F1EE U+1F1F1
+🇮🇹 	Italy 	copy 	U+1F1EE U+1F1F9
+🇯🇲 	Jamaica 	copy 	U+1F1EF U+1F1F2
+🇯🇵 	Japan 	copy 	U+1F1EF U+1F1F5
+🇯🇪 	Jersey 	copy 	U+1F1EF U+1F1EA
+🇯🇴 	Jordan 	copy 	U+1F1EF U+1F1F4
+🇰🇿 	Kazakhstan 	copy 	U+1F1F0 U+1F1FF
+🇰🇪 	Kenya 	copy 	U+1F1F0 U+1F1EA
+🇰🇮 	Kiribati 	copy 	U+1F1F0 U+1F1EE
+🇰🇵 	North Korea 	copy 	U+1F1F0 U+1F1F5
+🇰🇷 	South Korea 	copy 	U+1F1F0 U+1F1F7
+🇽🇰 	Kosovo 	copy 	U+1F1FD U+1F1F0
+🇰🇼 	Kuwait 	copy 	U+1F1F0 U+1F1FC
+🇰🇬 	Kyrgyzstan 	copy 	U+1F1F0 U+1F1EC
+🇱🇦 	Laos 	copy 	U+1F1F1 U+1F1E6
+🇱🇻 	Latvia 	copy 	U+1F1F1 U+1F1FB
+🇱🇧 	Lebanon 	copy 	U+1F1F1 U+1F1E7
+🇱🇸 	Lesotho 	copy 	U+1F1F1 U+1F1F8
+🇱🇷 	Liberia 	copy 	U+1F1F1 U+1F1F7
+🇱🇾 	Libya 	copy 	U+1F1F1 U+1F1FE
+🇱🇮 	Liechtenstein 	copy 	U+1F1F1 U+1F1EE
+🇱🇹 	Lithuania 	copy 	U+1F1F1 U+1F1F9
+🇱🇺 	Luxembourg 	copy 	U+1F1F1 U+1F1FA
+🇲🇴 	Macau 	copy 	U+1F1F2 U+1F1F4
+🇲🇬 	Madagascar 	copy 	U+1F1F2 U+1F1EC
+🇲🇼 	Malawi 	copy 	U+1F1F2 U+1F1FC
+🇲🇾 	Malaysia 	copy 	U+1F1F2 U+1F1FE
+🇲🇻 	Maldives 	copy 	U+1F1F2 U+1F1FB
+🇲🇱 	Mali 	copy 	U+1F1F2 U+1F1F1
+🇲🇹 	Malta 	copy 	U+1F1F2 U+1F1F9
+🇲🇭 	Marshall Islands 	copy 	U+1F1F2 U+1F1ED
+🇲🇶 	Martinique 	copy 	U+1F1F2 U+1F1F6
+🇲🇷 	Mauritania 	copy 	U+1F1F2 U+1F1F7
+🇲🇺 	Mauritius 	copy 	U+1F1F2 U+1F1FA
+🇾🇹 	Mayotte 	copy 	U+1F1FE U+1F1F9
+🇲🇽 	Mexico 	copy 	U+1F1F2 U+1F1FD
+🇫🇲 	Micronesia 	copy 	U+1F1EB U+1F1F2
+🇲🇩 	Moldova 	copy 	U+1F1F2 U+1F1E9
+🇲🇨 	Monaco 	copy 	U+1F1F2 U+1F1E8
+🇲🇳 	Mongolia 	copy 	U+1F1F2 U+1F1F3
+🇲🇪 	Montenegro 	copy 	U+1F1F2 U+1F1EA
+🇲🇸 	Montserrat 	copy 	U+1F1F2 U+1F1F8
+🇲🇦 	Morocco 	copy 	U+1F1F2 U+1F1E6
+🇲🇿 	Mozambique 	copy 	U+1F1F2 U+1F1FF
+🇲🇲 	Myanmar 	copy 	U+1F1F2 U+1F1F2
+🇳🇦 	Namibia 	copy 	U+1F1F3 U+1F1E6
+🇳🇷 	Nauru 	copy 	U+1F1F3 U+1F1F7
+🇳🇵 	Nepal 	copy 	U+1F1F3 U+1F1F5
+🇳🇱 	Netherlands 	copy 	U+1F1F3 U+1F1F1
+🇳🇨 	New Caledonia 	copy 	U+1F1F3 U+1F1E8
+🇳🇿 	New Zealand 	copy 	U+1F1F3 U+1F1FF
+🇳🇮 	Nicaragua 	copy 	U+1F1F3 U+1F1EE
+🇳🇪 	Niger 	copy 	U+1F1F3 U+1F1EA
+🇳🇬 	Nigeria 	copy 	U+1F1F3 U+1F1EC
+🇳🇺 	Niue 	copy 	U+1F1F3 U+1F1FA
+🇳🇫 	Norfolk Island 	copy 	U+1F1F3 U+1F1EB
+🇲🇰 	North Macedonia 	copy 	U+1F1F2 U+1F1F0
+🇲🇵 	Northern Mariana Islands 	copy 	U+1F1F2 U+1F1F5
+🇳🇴 	Norway 	copy 	U+1F1F3 U+1F1F4
+🇴🇲 	Oman 	copy 	U+1F1F4 U+1F1F2
+🇵🇰 	Pakistan 	copy 	U+1F1F5 U+1F1F0
+🇵🇼 	Palau 	copy 	U+1F1F5 U+1F1FC
+🇵🇸 	Palestine 	copy 	U+1F1F5 U+1F1F8
+🇵🇦 	Panama 	copy 	U+1F1F5 U+1F1E6
+🇵🇬 	Papua New Guinea 	copy 	U+1F1F5 U+1F1EC
+🇵🇾 	Paraguay 	copy 	U+1F1F5 U+1F1FE
+🇵🇪 	Peru 	copy 	U+1F1F5 U+1F1EA
+🇵🇭 	Philippines 	copy 	U+1F1F5 U+1F1ED
+🇵🇳 	Pitcairn Islands 	copy 	U+1F1F5 U+1F1F3
+🇵🇱 	Poland 	copy 	U+1F1F5 U+1F1F1
+🇵🇹 	Portugal 	copy 	U+1F1F5 U+1F1F9
+🇵🇷 	Puerto Rico 	copy 	U+1F1F5 U+1F1F7
+🇶🇦 	Qatar 	copy 	U+1F1F6 U+1F1E6
+🇷🇪 	Réunion 	copy 	U+1F1F7 U+1F1EA
+🇷🇴 	Romania 	copy 	U+1F1F7 U+1F1F4
+🇷🇺 	Russia 	copy 	U+1F1F7 U+1F1FA
+🇷🇼 	Rwanda 	copy 	U+1F1F7 U+1F1FC
+🇧🇱 	Saint Barthélemy 	copy 	U+1F1E7 U+1F1F1
+🇸🇭 	Saint Helena, Ascension and Tristan da Cunha 	copy 	U+1F1F8 U+1F1ED
+🇰🇳 	Saint Kitts and Nevis 	copy 	U+1F1F0 U+1F1F3
+🇱🇨 	Saint Lucia 	copy 	U+1F1F1 U+1F1E8
+🇲🇫 	Saint Martin 	copy 	U+1F1F2 U+1F1EB
+🇵🇲 	Saint Pierre and Miquelon 	copy 	U+1F1F5 U+1F1F2
+🇻🇨 	Saint Vincent and the Grenadines 	copy 	U+1F1FB U+1F1E8
+🇼🇸 	Samoa 	copy 	U+1F1FC U+1F1F8
+🇸🇲 	San Marino 	copy 	U+1F1F8 U+1F1F2
+🇸🇹 	São Tomé and Príncipe 	copy 	U+1F1F8 U+1F1F9
+🇸🇦 	Saudi Arabia 	copy 	U+1F1F8 U+1F1E6
+🏴󠁧󠁢󠁳󠁣󠁴󠁿 	Scotland 	copy 	U+1F3F4 U+E0067
+U+E0062 U+E0073
+U+E0063 U+E0074
+U+E007F
+🇸🇳 	Senegal 	copy 	U+1F1F8 U+1F1F3
+🇷🇸 	Serbia 	copy 	U+1F1F7 U+1F1F8
+🇸🇨 	Seychelles 	copy 	U+1F1F8 U+1F1E8
+🇸🇱 	Sierra Leone 	copy 	U+1F1F8 U+1F1F1
+🇸🇬 	Singapore 	copy 	U+1F1F8 U+1F1EC
+🇸🇽 	Sint Maarten 	copy 	U+1F1F8 U+1F1FD
+🇸🇰 	Slovakia 	copy 	U+1F1F8 U+1F1F0
+🇸🇮 	Slovenia 	copy 	U+1F1F8 U+1F1EE
+🇸🇧 	Solomon Islands 	copy 	U+1F1F8 U+1F1E7
+🇸🇴 	Somalia 	copy 	U+1F1F8 U+1F1F4
+🇿🇦 	South Africa 	copy 	U+1F1FF U+1F1E6
+🇬🇸 	South Georgia 	copy 	U+1F1EC U+1F1F8
+🇸🇸 	South Sudan 	copy 	U+1F1F8 U+1F1F8
+🇪🇸 	Spain 	copy 	U+1F1EA U+1F1F8
+🇱🇰 	Sri Lanka 	copy 	U+1F1F1 U+1F1F0
+🇸🇩 	Sudan 	copy 	U+1F1F8 U+1F1E9
+🇸🇷 	Suriname 	copy 	U+1F1F8 U+1F1F7
+🇸🇯 	Svalbard and Jan Mayen 	copy 	U+1F1F8 U+1F1EF
+🇸🇪 	Sweden 	copy 	U+1F1F8 U+1F1EA
+🇨🇭 	Switzerland 	copy 	U+1F1E8 U+1F1ED
+🇸🇾 	Syria 	copy 	U+1F1F8 U+1F1FE
+🇹🇼 	Taiwan 	copy 	U+1F1F9 U+1F1FC
+🇹🇯 	Tajikistan 	copy 	U+1F1F9 U+1F1EF
+🇹🇿 	Tanzania 	copy 	U+1F1F9 U+1F1FF
+🇹🇭 	Thailand 	copy 	U+1F1F9 U+1F1ED
+🇹🇱 	Timor-Leste 	copy 	U+1F1F9 U+1F1F1
+🇹🇬 	Togo 	copy 	U+1F1F9 U+1F1EC
+🇹🇰 	Tokelau 	copy 	U+1F1F9 U+1F1F0
+🇹🇴 	Tonga 	copy 	U+1F1F9 U+1F1F4
+🇹🇹 	Trinidad and Tobago 	copy 	U+1F1F9 U+1F1F9
+🇹🇳 	Tunisia 	copy 	U+1F1F9 U+1F1F3
+🇹🇷 	Turkey 	copy 	U+1F1F9 U+1F1F7
+🇹🇲 	Turkmenistan 	copy 	U+1F1F9 U+1F1F2
+🇹🇨 	Turks and Caicos Islands 	copy 	U+1F1F9 U+1F1E8
+🇹🇻 	Tuvalu 	copy 	U+1F1F9 U+1F1FB
+🇺🇬 	Uganda 	copy 	U+1F1FA U+1F1EC
+🇺🇦 	Ukraine 	copy 	U+1F1FA U+1F1E6
+🇦🇪 	United Arab Emirates 	copy 	U+1F1E6 U+1F1EA
+🇬🇧 	United Kingdom 	copy 	U+1F1EC U+1F1E7
+🇺🇸 	United States 	copy 	U+1F1FA U+1F1F8
+🇺🇲 	United States Minor Outlying Islands 	copy 	U+1F1FA U+1F1F2
+🇺🇾 	Uruguay 	copy 	U+1F1FA U+1F1FE
+🇺🇿 	Uzbekistan 	copy 	U+1F1FA U+1F1FF
+🇻🇺 	Vanuatu 	copy 	U+1F1FB U+1F1FA
+🇻🇦 	Vatican City (Holy See) 	copy 	U+1F1FB U+1F1E6
+🇻🇪 	Venezuela 	copy 	U+1F1FB U+1F1EA
+🇻🇳 	Vietnam 	copy 	U+1F1FB U+1F1F3
+🇻🇬 	British Virgin Islands 	copy 	U+1F1FB U+1F1EC
+🇻🇮 	United States Virgin Islands 	copy 	U+1F1FB U+1F1EE
+🏴󠁧󠁢󠁷󠁬󠁳󠁿 	Wales 	copy 	U+1F3F4 U+E0067
+U+E0062 U+E0077
+U+E006C U+E0073
+U+E007F
+🇼🇫 	Wallis and Futuna 	copy 	U+1F1FC U+1F1EB
+🇪🇭 	Western Sahara 	copy 	U+1F1EA U+1F1ED
+🇾🇪 	Yemen 	copy 	U+1F1FE U+1F1EA
+🇿🇲 	Zambia 	copy 	U+1F1FF U+1F1F2
+🇿🇼 	Zimbabwe 	copy 	U+1F1FF U+1F1FC

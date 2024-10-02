@@ -1,0 +1,22 @@
+#site>div {
+    grid-column: 1 / -1;
+    max-height: calc(100vh - 96px);
+}
+
+#site>div>img.reload {
+    max-height: 25%;
+    max-width: 75%;
+    filter: grayscale(100%) brightness(50%);
+}
+
+#vouchers2 {
+    overflow: hidden;
+}
+
+#vouchers2>a {
+    cursor: pointer;
+}
+
+#site>div a {
+    font-size: 2em;
+}

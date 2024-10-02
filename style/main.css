@@ -1,0 +1,62 @@
+:root {
+    color-scheme: light dark;
+    --bg-color: #efefef;
+    --nav-color: #bfbfbf;
+    --nav-divider: #808080;
+    --text-color: #152028;
+    --link-color: #0B5971;
+    --alert-color: #48BFE3;
+    --error-color: #E63946;
+    --button-color: #4255C0;
+    --border-color: var(--nav-divider);
+    --select-color: #ACACAC;
+    --success-color: #99D98C;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #152028;
+        --nav-color: #232B32;
+        --nav-divider: #050505;
+        --text-color: #efefef;
+        --link-color: #48A9A6;
+        --alert-color: #272640;
+        --error-color: #9D0208;
+        --button-color: #242E68;
+        --border-color: var(--nav-divider);
+        --select-color: #2B2A33;
+        --success-color: #588157;
+    }
+
+    img {
+        filter: brightness(.8) contrast(1.2);
+    }
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: "Sulphur Point", sans-serif;
+    font-weight: 700;
+    /* display: flex; */
+    /* flex-direction: column; */
+    overflow-x: hidden;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+div#site {
+    flex: 1 0 auto;
+}
+
+body {
+    font-size: 85%;
+}
