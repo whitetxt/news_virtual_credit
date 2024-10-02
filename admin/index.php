@@ -23,6 +23,7 @@ require_minimum_permissions($_COOKIE["sulv-token"], USER_PERMISSION_ADMIN);
         <a href="money/view.php" class="btn">View Transactions</a>
         <a href="money/add.php" class="btn">Give Money</a>
         <a href="money/delete.php" class="btn">Remove Money</a>
+        <a href="verify_receipt.php" class="btn">Verify Receipt</a>
     </div>
     <?php require(PREFAB_PATH . "/global/footer.php"); ?>
     <?php require(PREFAB_PATH . "/global/cookie.php"); ?>

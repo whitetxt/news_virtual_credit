@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/config.php";
+require_once __DIR__ . "/../config.php";
 require_once DB_PATH . "/users.php";
 if (isset($_COOKIE["sulv-token"]) == false) {
     header("Location: accounts/login.php");
@@ -18,49 +18,28 @@ if (($user->access_level != USER_PERMISSION_SCAN) && ($user->access_level != USE
     <?php require(PREFAB_PATH . "/global/head.php"); ?>
     <title>Scan</title>
 </head>
-<style>
-    #canvas {
-        margin-top: 2rem;
-    }
-
-    label {
-        font-size: 1.25em;
-    }
-
-    a {
-        cursor: pointer;
-    }
-</style>
 
 <body>
     <?php require(PREFAB_PATH . "/nav/nav.php"); ?>
     <div class="card bg-base-100 w-96 shadow-xl mx-auto">
-        <canvas id="canvas" class="hidden"></canvas>
+        <canvas id="canvas"></canvas>
         <div class="card-body">
             <span class="card-title">Scan a QR Code</span>
-            <input type="number" min="0.01" step="0.01" placeholder="Enter amount spent" name="amount" id="amount"
-                class="input input-bordered input-primary">
-            <div class="card-actions justify-end">
-                <a onclick="startScan()" class="btn">
-                    <span class="material-symbols-rounded">
-                        photo_camera
-                    </span>
-                    <span>Scan QR Code</span>
-                </a>
-            </div>
         </div>
     </div>
     <dialog id="confirmation_modal" class="modal">
         <div class="modal-box">
-            <h3 class="text-lg font-bold" id="title"></h3>
-            <p class="py-4" id="info"></p>
-            <div class="modal-action" id="modal_actions">
-                <form method="dialog">
-                    <!-- if there is a button in form, it will close the modal -->
-                    <button class="btn" id="modal_yes" onclick="spend()">Yes</button>
-                    <button class="btn">No</button>
-                </form>
-            </div>
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                    onclick="modal.classList.toggle('modal-open');video.play()">✕</button>
+            </form>
+            <h3 class="text-lg font-bold" id="title">Receipt Data</h3>
+            <p class="py-4" id="verify">
+                <span>Verifying with server...</span>
+                <span class="loading loading-spinner loading-sm" id="verify-spin"></span>
+            </p>
+            <p class="py-4" id="value">Value: </p>
+            <p class="py-4" id="time">Time: </p>
         </div>
     </dialog>
     <?php require(PREFAB_PATH . "/global/footer.php"); ?>
@@ -74,11 +53,9 @@ if (($user->access_level != USER_PERMISSION_SCAN) && ($user->access_level != USE
     const canvas = canvasElement.getContext("2d");
     // var output = document.getElementById("output");
     const modal = document.getElementById("confirmation_modal");
-    const modal_title = document.getElementById("title");
-    const modal_info = document.getElementById("info");
-    const modal_yes = document.getElementById("modal_yes");
-    const modal_actions = document.getElementById("modal_actions");
-    var latest_data = null;
+    const modal_value = document.getElementById("value");
+    const modal_time = document.getElementById("time");
+    const verify_spin = document.getElementById("verify-spin");
 
     function startScan() {
         canvasElement.classList.remove("hidden");
@@ -120,17 +97,44 @@ if (($user->access_level != USER_PERMISSION_SCAN) && ($user->access_level != USE
                 drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
                 try {
                     data = JSON.parse(code.data);
-                    latest_data = data;
-                    var amount = parseFloat(document.getElementById("amount").value);
                     modal.classList.toggle("modal-open");
-                    modal_title.innerText = "Confirm account charge";
-                    modal_info.innerText = `Do you want to charge £${amount.toFixed(2)} to ${data.username}?`;
-                    modal_actions.classList.remove("hidden");
+                    verify_spin.classList.remove("hidden");
+                    modal_value.classList.add("hidden");
+                    modal_time.classList.add("hidden");
+                    modal_value.innerText = `Value: ${data.amount.toFixed(2)}`;
+                    modal_time.innerText = `Time: ${new Date(data.time * 1000).toLocaleString()}`;
                     video.pause();
+                    fetch("/voucher/api/admin/verify.php", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                        },
+                        body: `id=${data.transactionid}&amount=${data.amount}&time=${data.time}`,
+                    }).then((response) => {
+                        response.json().then((data) => {
+                            if (data.status === "success") {
+                                if (data.valid === true) {
+                                    modal.querySelector("#verify").innerText = "Verified!";
+                                } else {
+                                    modal.querySelector("#verify").innerText =
+                                        `QR data different to server: ${data.message}`;
+                                }
+                            } else {
+                                modal.querySelector("#verify").innerText =
+                                    "An server-side error occured. Manual check is required.";
+                                modal_value.classList.remove("hidden");
+                                modal_time.classList.remove("hidden");
+                            }
+                            verify_spin.classList.add("hidden");
+                        });
+                    });
                 } catch (error) {
                     console.log("wuuh");
                     console.error(error);
-                    create_alert("Invalid QR Code.");
+                    modal.querySelector("#verify").innerText =
+                        "An client-side error occured. Manual check is required.";
+                    modal_value.classList.remove("hidden");
+                    modal_time.classList.remove("hidden");
                 }
             } else {
                 // output.innerText = "";
@@ -139,39 +143,7 @@ if (($user->access_level != USER_PERMISSION_SCAN) && ($user->access_level != USE
         requestAnimationFrame(tick);
     }
 
-    function spend() {
-        const username = latest_data.username;
-        const secret = latest_data.secret;
-        const amount = parseFloat(document.getElementById("amount").value)
-        modal_title.innerText = "Processing charge...";
-        modal_info.innerHTML = '<span class="loading loading-spinner loading-lg"></span>';
-        modal_actions.classList.add("hidden");
-        var urlencoded = new URLSearchParams();
-        urlencoded.append("username", username);
-        urlencoded.append("secret", secret);
-        urlencoded.append("amount", amount);
-        fetch("/voucher/api/charge_account.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: urlencoded
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    create_alert("Successfully charged account!");
-                    setTimeout(() => {
-                        window.location.href = "/voucher/index.php";
-                    }, 1000);
-                } else {
-                    create_alert(data.error);
-                }
-            }).catch(error => {
-                console.error("Error:", error);
-                create_alert("An error occurred. Please try again.");
-            });
-    }
+    startScan();
 </script>
 
 </html>
