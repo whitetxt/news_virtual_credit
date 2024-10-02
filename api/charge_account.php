@@ -42,5 +42,7 @@ if ($res === false) {
     die(json_encode(["success" => false, "error" => "Unknown error. Try again."]));
 }
 
+$charge->secret = bin2hex(random_bytes(32));
+update_user($charge);
+
 die(json_encode(array("success" => true)));
-?>

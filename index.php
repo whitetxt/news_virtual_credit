@@ -22,7 +22,7 @@ if ($user->access_level == USER_PERMISSION_SCAN) {
 <body>
     <?php require(PREFAB_PATH . "/nav/nav.php"); ?>
     <div id="site" class="flex flex-col gap-8 w-full justify-center items-center">
-        <span class="text-3xl">Balance</span>
+        <span class="text-3xl text-primary">Balance</span>
         <span class="text-xl">£<?= number_format($user->balance, 2) ?></span>
         <a href="spend.php" class="btn">
             <span class="material-symbols-rounded">
