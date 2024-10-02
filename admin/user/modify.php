@@ -33,25 +33,40 @@ require_minimum_permissions($_COOKIE["sulv-token"], USER_PERMISSION_ADMIN);
                 <option value="<?= $user->username ?>"><?= $user->username ?> (<?= $user->role ?>)</option>;
             <?php } ?>
         </select>
-        <input type="password" id="pass" name="pass" placeholder="Password" class="input input-secondary">
-        <select id="acclvl" name="acclvl" class="select select-secondary">
-            <option disabled selected value="" hidden>Select an access level</option>
-            <option value="-1">Scanner</option>
-            <option value="0">User</option>
-            <option value="1">Admin</option>
-        </select>
+        <label>
+            <div class="label">
+                <span class="label-text">Password</span>
+            </div>
+            <input type="password" id="pass" name="pass" class="input input-secondary">
+        </label>
+        <label>
+            <div class="label">
+                <span class="label-text">Access Level</span>
+            </div>
+            <select id="acclvl" name="acclvl" class="select select-secondary">
+                <option disabled selected value="" hidden>Select an access level</option>
+                <option value="-1">Scanner</option>
+                <option value="0">User</option>
+                <option value="1">Admin</option>
+            </select>
+        </label>
         <label class="label cursor-pointer gap-8">
             <span class="label-text">Account Enabled</span>
             <input type="checkbox" id="enb" name="enb" class="checkbox checkbox-secondary">
         </label>
-        <select name="role" id="role" class="select select-secondary">
-            <option value="" hidden disabled selected>Select a role</option>
-            <?php
-            $roles = get_roles();
-            foreach ($roles as $role) { ?>
-                <option value="<?= $role->name ?>"><?= $role->name ?></option>
-            <?php } ?>
-        </select>
+        <label>
+            <div class="label">
+                <span class="label-text">Role</span>
+            </div>
+            <select name="role" id="role" class="select select-secondary">
+                <option value="" hidden disabled selected>Select a role</option>
+                <?php
+                $roles = get_roles();
+                foreach ($roles as $role) { ?>
+                    <option value="<?= $role->name ?>"><?= $role->name ?></option>
+                <?php } ?>
+            </select>
+        </label>
         <button type="submit" class="btn">Update User</button>
         <!-- </form> -->
     </div>
@@ -124,7 +139,7 @@ require_minimum_permissions($_COOKIE["sulv-token"], USER_PERMISSION_ADMIN);
                         if (resp.status === "error") {
                             create_alert(resp.message);
                         } else {
-                            create_alert("Success!", 3, "SUCCESS");
+                            create_alert("Success!", 3, "success");
                         }
                     })
                     .catch(error => {
@@ -149,7 +164,7 @@ require_minimum_permissions($_COOKIE["sulv-token"], USER_PERMISSION_ADMIN);
                     if (resp.status === "error") {
                         create_alert(resp.message);
                     } else {
-                        create_alert("Success!", 3, "SUCCESS");
+                        create_alert("Success!", 3, "success");
                     }
                 })
                 .catch(error => {

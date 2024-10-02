@@ -95,4 +95,3 @@ function get_users_transactions($username) {
 	}
 	return $out;
 }
-?>

@@ -1,5 +1,5 @@
-<?php require "config.php"; ?>
 <?php
+require_once __DIR__ . "/../../config.php";
 require_once API_PATH . "/accounts/functions.php";
 require_minimum_permissions($_COOKIE["sulv-token"], USER_PERMISSION_ADMIN);
 ?>
@@ -7,66 +7,63 @@ require_minimum_permissions($_COOKIE["sulv-token"], USER_PERMISSION_ADMIN);
 <html lang="en">
 
 <head>
-    <?php require (PREFAB_PATH . "/global/head.php"); ?>
+    <?php require(PREFAB_PATH . "/global/head.php"); ?>
     <title>Admin Panel - Delete Voucher</title>
-    <link rel="stylesheet" href="/voucher/style/main.css">
-    <link rel="stylesheet" href="/voucher/admin/admin.css">
-    <link rel="stylesheet" href="/voucher/style/form.css">
 </head>
 
 <body>
-    <div id="head">
-        <?php require (PREFAB_PATH . "/nav/nav.php"); ?>
-    </div>
-    <div id="site">
-        <a href="../index.php">&lt; Back</a>
-        <div id="vouchers">
-            <?php
-            require_once DB_PATH . "/money.php";
-            if (logged_in()) {
-                $vouchers = get_vouchers();?>
-            <h2>Total Vouchers: <?php echo count($vouchers); ?></h2>
-            <div id="vouchers2">
-                <?php
-                foreach ($vouchers as $voucher) {?>
-                <div class="voucher">
-                    <h3 class="id">Voucher ID: <?php echo $voucher->voucherid; ?></h3>
-                    <h3 class="user">User: <?php echo $voucher->username; ?></h3>
-                    <h3 class="value">Value: £<?php echo number_format((float)$voucher->amount, 2); ?></h3>
-                    <h3 class="time">Time Given: <?php echo date("d/m/Y H:i:s", $voucher->time_given); ?></h3>
-                    <h3 class="used">Used: <?php echo $voucher->used == 1 ? "Yes" : "No"; ?></h3>
+    <?php require(PREFAB_PATH . "/nav/nav.php"); ?>
+    <div id="site" class="flex flex-col items-center gap-4">
+        <a href="../index.php" class="btn">&lt; Back</a>
+        <?php
+        require_once DB_PATH . "/users.php";
+        require_once DB_PATH . "/money.php";
+        $users = get_users();
+        if (logged_in()) {
+            $transactions = array_reverse(get_transactions()); ?>
+            <h2>Total Transactions: <?php echo count($transactions); ?></h2>
+            <label>
+                <div class="label">
+                    <span class="label-text">User Filter</span>
                 </div>
-                <hr>
-                <?php
-                }?>
-            </div>
+                <select id="usersel" name="user" onchange="changed_user()" class="select select-secondary">
+                    <option disabled selected value="" hidden> Select a user </option>
+                    <?php foreach ($users as $user) {
+                        6 ?>
+                        <option value="<?= $user->username ?>"><?= $user->username ?> (<?= $user->role ?>)</option>;
+                    <?php } ?>
+                </select>
+            </label>
+            <?php foreach ($transactions as $t) { ?>
+                <div class="card bg-base-100 w-96 shadow-xl voucher" data-user="<?= $t->username ?>">
+                    <div class="card-body">
+                        <h2 class="card-title"><?= $t->username ?> - £<?= number_format($t->amount, 2) ?></h2>
+
+                        <p><?= $t->type ?> - <?= $t->description ?></p>
+                        <p><?= date("d-m-y H:i:s", $t->time) ?></p>
+                    </div>
+                </div>
             <?php } ?>
-        </div>
+        <?php } ?>
     </div>
-    <?php require (PREFAB_PATH . "/global/footer.php"); ?>
-    <?php require (PREFAB_PATH . "/global/cookie.php"); ?>
+    <?php require(PREFAB_PATH . "/global/footer.php"); ?>
+    <?php require(PREFAB_PATH . "/global/cookie.php"); ?>
 </body>
 <script>
-function delete_voucher(e) {
-    e.preventDefault();
+    const cards = document.querySelectorAll(".voucher");
 
-    const vid = document.querySelector("select#voucher").value;
-
-    fetch("/voucher/api/admin/vouchers/delete.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-        },
-        body: `vid=${vid}`
-    }).then(resp => resp.json()).then(data => {
-        if (data.status === "error") {
-            create_alert(data.message);
-        } else {
-            create_alert("Success!", 3, "SUCCESS");
-        }
-    });
-    return false;
-}
+    function changed_user() {
+        const user = document.getElementById("usersel").value;
+        console.log(user);
+        cards.forEach(card => {
+            console.log(card.dataset.user);
+            if (card.dataset.user === user) {
+                card.classList.remove("hidden");
+            } else {
+                card.classList.add("hidden");
+            }
+        });
+    }
 </script>
 <script src="/voucher/script/alert.js"></script>
 
