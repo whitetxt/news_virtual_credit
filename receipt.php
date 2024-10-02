@@ -58,7 +58,7 @@ class QRImageWithLogo extends QRGdImagePNG
     }
 }
 
-$voucher = get_voucher_from_id($_GET["id"]);
+$transaction = get_transaction_from_id($_GET["id"]);
 
 $options = new QROptions;
 
@@ -80,11 +80,9 @@ $options->logoSpaceHeight = 13;
 
 $qrcode = new QRCode($options);
 $qrcode->addByteSegment(json_encode([
-    "voucherid" => $voucher->voucherid,
-    "value" => $voucher->amount,
-    "time_given" => $voucher->time_given,
-    "used" => $voucher->used,
-    "secret" => $voucher->secret,
+    "transactionid" => $transaction->id,
+    "amount" => $transaction->amount,
+    "time" => $transaction->time,
 ]));
 
 $qrOutputInterface = new QRImageWithLogo($options, $qrcode->getQRMatrix());
@@ -101,39 +99,29 @@ $qr = base64_encode($out);
 <head>
     <?php require(PREFAB_PATH . "/global/head.php"); ?>
     <title>Generate Receipt</title>
-    <link rel="stylesheet" href="/voucher/style/index.css">
-    <link rel="stylesheet" href="/voucher/style/receipt.css">
 </head>
 
 <body>
-    <div id="head">
-        <?php require(PREFAB_PATH . "/nav/nav.php"); ?>
-    </div>
-    <div id="site">
-        <div id="vouchers">
-            <?php
-            require_once DB_PATH . "/money.php";
-            if (!isset($_GET["id"])) {
-                echo "<h2>No Voucher ID Provided</h2>";
+    <?php require(PREFAB_PATH . "/nav/nav.php"); ?>
+    <div id="site" class="flex flex-col items-center gap-4">
+        <?php
+        require_once DB_PATH . "/money.php";
+        if (!isset($_GET["id"])) {
+            echo "<h2>No Voucher ID Provided</h2>";
+        } else {
+            $transaction = get_transaction_from_id($_GET["id"]);
+            if (logged_in() && $transaction->username == current_user()->username) { ?>
+        <h1 class="text-primary text-2xl">Please screenshot this page.</h1>
+        <h3 class="text-xl">Voucher ID: <?php echo $transaction->id; ?></h3>
+        <h3 class="text-xl">Value: £<?php echo number_format((float) $transaction->amount, 2); ?></h3>
+        <h3 class="text-xl">Time of Transaction: <?php echo date("d/m/Y H:i:s", $transaction->time); ?></h3>
+        <img src="data:image/png;base64,<?php echo $qr; ?>" class="qr">
+        <?php } else if (!logged_in()) {
+                header("location: /voucher/accounts/login.php");
             } else {
-                $voucher = get_voucher_from_id($_GET["id"]);
-                if (logged_in() && $voucher->username == current_user()->username) { ?>
-                    <div id="vouchers2">
-                        <h1>Please screenshot this page.</h1>
-                        <img src="/voucher/assets/reload.png" alt="Reload Voucher" class="reload">
-                        <h3 class="id">Voucher ID: <?php echo $voucher->voucherid; ?></h3>
-                        <h3 class="value">Value: £<?php echo number_format((float) $voucher->amount, 2); ?></h3>
-                        <h3 class="time">Time Given: <?php echo date("d/m/Y H:i:s", $voucher->time_given); ?></h3>
-                        <h3 class="used">Time Used: <?php echo date("d/m/Y H:i:s", $voucher->used); ?></h3>
-                        <img src="data:image/png;base64,<?php echo $qr; ?>" class="qr">
-                    </div>
-                <?php } else if (!logged_in()) {
-                    header("location: /voucher/accounts/login.php");
-                } else {
-                    header("location: /voucher/");
-                }
-            } ?>
-        </div>
+                header("location: /voucher/");
+            }
+        } ?>
     </div>
     <?php require(PREFAB_PATH . "/global/footer.php"); ?>
     <?php require(PREFAB_PATH . "/global/cookie.php"); ?>
