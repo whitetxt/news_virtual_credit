@@ -57,41 +57,42 @@ class QRImageWithLogo extends QRGdImagePNG
         return $imageData;
     }
 }
+if (isset($_GET["id"])) {
+    $transaction = get_transaction_from_id($_GET["id"]);
 
-$transaction = get_transaction_from_id($_GET["id"]);
+    $options = new QROptions;
 
-$options = new QROptions;
-
-$options->outputBase64 = false;
-$options->scale = 6;
-$options->imageTransparent = false;
-$options->drawCircularModules = true;
-$options->circleRadius = 0.45;
-$options->keepAsSquare = [
-    QRMatrix::M_FINDER,
-    QRMatrix::M_FINDER_DOT,
-];
-// ecc level H is required for logo space
-$options->eccLevel = EccLevel::H;
-$options->addLogoSpace = true;
-$options->logoSpaceWidth = 13;
-$options->logoSpaceHeight = 13;
+    $options->outputBase64 = false;
+    $options->scale = 6;
+    $options->imageTransparent = false;
+    $options->drawCircularModules = true;
+    $options->circleRadius = 0.45;
+    $options->keepAsSquare = [
+        QRMatrix::M_FINDER,
+        QRMatrix::M_FINDER_DOT,
+    ];
+    // ecc level H is required for logo space
+    $options->eccLevel = EccLevel::H;
+    $options->addLogoSpace = true;
+    $options->logoSpaceWidth = 13;
+    $options->logoSpaceHeight = 13;
 
 
-$qrcode = new QRCode($options);
-$qrcode->addByteSegment(json_encode([
-    "transactionid" => $transaction->id,
-    "amount" => $transaction->amount,
-    "time" => $transaction->time,
-]));
+    $qrcode = new QRCode($options);
+    $qrcode->addByteSegment(json_encode([
+        "transactionid" => $transaction->id,
+        "amount" => $transaction->amount,
+        "time" => $transaction->time,
+    ]));
 
-$qrOutputInterface = new QRImageWithLogo($options, $qrcode->getQRMatrix());
+    $qrOutputInterface = new QRImageWithLogo($options, $qrcode->getQRMatrix());
 
-// dump the output, with an additional logo
+    // dump the output, with an additional logo
 // the logo could also be supplied via the options, see the svgWithLogo example
-$out = $qrOutputInterface->dump(null, __DIR__ . '/assets/logo.png');
+    $out = $qrOutputInterface->dump(null, __DIR__ . '/assets/logo.png');
 
-$qr = base64_encode($out);
+    $qr = base64_encode($out);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

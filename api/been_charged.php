@@ -21,4 +21,4 @@ if ($arr === false) {
     die(json_encode(["success" => false]));
 }
 
-die(json_encode(array("success" => true, "amount" => $arr["amount"])));
+die(json_encode(["success" => true, "amount" => $arr["amount"], "transid" => $arr["id"]]));

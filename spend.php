@@ -112,16 +112,16 @@ $qr = base64_encode($out);
 </body>
 <script src="/voucher/script/alert.js"></script>
 <script>
-    setInterval(() => {
-        fetch("/voucher/api/been_charged.php")
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    create_alert(`You have been charged £${parseFloat(data.amount).toFixed(2)}!`, "success");
-                    window.location.href = "receipt.php";
-                }
-            });
-    }, 1000);
+setInterval(() => {
+    fetch("/voucher/api/been_charged.php")
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                create_alert(`You have been charged £${parseFloat(data.amount).toFixed(2)}!`, "success");
+                window.location.href = `receipt.php?id=${data.transid}`;
+            }
+        });
+}, 1000);
 </script>
 
 </html>
