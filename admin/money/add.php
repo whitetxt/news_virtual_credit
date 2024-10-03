@@ -26,14 +26,12 @@ $me = current_user();
                 return;
             }
             foreach ($users as $user) {
-                if ($user->token == $_COOKIE["sulv-token"])
-                    continue;
                 if ($user->access_level == USER_PERMISSION_SCAN)
                     continue; ?>
-                <label class="label cursor-pointer">
-                    <span class="label-text mr-2"><?= $user->username ?> (<?= $user->role ?>)</span>
-                    <input type="checkbox" class="checkbox checkbox-secondary" name="<?= $user->username ?>" />
-                </label>
+            <label class="label cursor-pointer">
+                <span class="label-text mr-2"><?= $user->username ?> (<?= $user->role ?>)</span>
+                <input type="checkbox" class="checkbox checkbox-secondary" name="<?= $user->username ?>" />
+            </label>
             <?php } ?>
         </div>
         <label>
@@ -56,36 +54,36 @@ $me = current_user();
     <?php require(PREFAB_PATH . "/global/cookie.php"); ?>
 </body>
 <script>
-    function give_money() {
-        const username = document.querySelectorAll("label.label>input[type='checkbox']");
+function give_money() {
+    const username = document.querySelectorAll("label.label>input[type='checkbox']");
 
-        var username_string = "";
-        for (var i = 0; i < username.length; i++) {
-            if (username[i].checked) {
-                username_string += username[i].name + "|";
-            }
+    var username_string = "";
+    for (var i = 0; i < username.length; i++) {
+        if (username[i].checked) {
+            username_string += username[i].name + "|";
         }
-        if (username_string.endsWith("|")) {
-            username_string = username_string.slice(0, -1);
-        }
-
-        const value = document.querySelector("input#value").value;
-
-        fetch("/voucher/api/admin/money/add.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-            },
-            body: `username=${username_string}&amount=${value}&reason=Added by <?= $me->username ?>`
-        }).then(resp => resp.json()).then(data => {
-            if (data.status === "error") {
-                create_alert(data.message);
-            } else {
-                create_alert("Success!", 3, "success");
-            }
-        });
-        return false;
     }
+    if (username_string.endsWith("|")) {
+        username_string = username_string.slice(0, -1);
+    }
+
+    const value = document.querySelector("input#value").value;
+
+    fetch("/voucher/api/admin/money/add.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        body: `username=${username_string}&amount=${value}&reason=Added by <?= $me->username ?>`
+    }).then(resp => resp.json()).then(data => {
+        if (data.status === "error") {
+            create_alert(data.message);
+        } else {
+            create_alert("Success!", 3, "success");
+        }
+    });
+    return false;
+}
 </script>
 <script src="/voucher/script/alert.js"></script>
 

@@ -22,4 +22,3 @@ if ($arr === false) {
 }
 
 die(json_encode(array("success" => true, "amount" => $arr["amount"])));
-?>
