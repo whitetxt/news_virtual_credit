@@ -67,7 +67,7 @@ require_minimum_permissions($_COOKIE["sulv-token"], USER_PERMISSION_ADMIN);
                 <?php } ?>
             </select>
         </label>
-        <button type="submit" class="btn">Update User</button>
+        <button class="btn" onclick="update_user()">Update User</button>
         <!-- </form> -->
     </div>
     <?php require(PREFAB_PATH . "/global/footer.php"); ?>
@@ -115,9 +115,7 @@ require_minimum_permissions($_COOKIE["sulv-token"], USER_PERMISSION_ADMIN);
         return hashHex;
     }
 
-    function update_user(e) {
-        e.preventDefault();
-
+    function update_user() {
         const name = document.querySelector("select#user").value;
         const access_level = document.querySelector("select#acclvl").value;
         const enabled = document.querySelector("input#enb").checked ? "enabled" : "disabled";

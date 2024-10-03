@@ -11,7 +11,7 @@ define("API_PATH", BASE_PATH . "/api");
 define("DB_PATH", API_PATH . "/db");
 define("PREFAB_PATH", BASE_PATH . "/prefabs");
 define("VENDOR_PATH", BASE_PATH . "/vendor");
-define("USERS_DB", DB_PATH . "/users_dev.db");
+define("USERS_DB", DB_PATH . "/users.db");
 
 // Defines user permissions
 define("USER_PERMISSION_SCAN", -1);
