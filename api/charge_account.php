@@ -9,6 +9,8 @@ if (!logged_in()) {
     die(json_encode(array("success" => false, "error" => "Not logged in.")));
 }
 
+$me = current_user();
+
 $username = $_POST["username"];
 $secret = $_POST["secret"];
 $amount = floatval($_POST["amount"]);
@@ -31,10 +33,11 @@ if (!update_user($charge)) {
 
 $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READWRITE);
 
-$stmt = $db->prepare("INSERT INTO transactions(username, type, amount, time) VALUES(:usr, :typ, :amt, :tim)");
+$stmt = $db->prepare("INSERT INTO transactions(username, type, amount, description, time) VALUES(:usr, :typ, :amt, :desc, :tim)");
 $stmt->bindParam(":usr", $username);
 $stmt->bindValue(":typ", "Charge");
 $stmt->bindParam(":amt", $amount);
+$stmt->bindValue(":desc", "Charged by " . $me->username);
 $stmt->bindValue(":tim", time(), SQLITE3_INTEGER);
 
 $res = $stmt->execute();

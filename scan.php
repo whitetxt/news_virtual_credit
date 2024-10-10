@@ -158,15 +158,17 @@ function spend() {
         })
         .then(response => response.json())
         .then(data => {
+            modal.classList.toggle("modal-open");
             if (data.success) {
-                create_alert("Successfully charged account!");
+                create_alert("Successfully charged account!", "success");
                 setTimeout(() => {
-                    window.location.href = "/voucher/index.php";
-                }, 1000);
+                    window.location.reload();
+                }, 5000);
             } else {
                 create_alert(data.error);
             }
         }).catch(error => {
+            modal.classList.toggle("modal-open");
             console.error("Error:", error);
             create_alert("An error occurred. Please try again.");
         });

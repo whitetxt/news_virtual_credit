@@ -2167,7 +2167,7 @@ html{
   border-bottom-width: calc(0px * var(--tw-divide-y-reverse));
 }
 
-:is([dir="rtl"] .stats > :not([hidden]) ~ :not([hidden])){
+[dir="rtl"] .stats > *:not([hidden]) ~ *:not([hidden]){
   --tw-divide-x-reverse: 1;
 }
 
@@ -2618,6 +2618,7 @@ html{
 
 .join.join-horizontal > :where(*:not(:first-child)):is(.btn){
   margin-inline-start: calc(var(--border-btn) * -1);
+  margin-top: 0px;
 }
 
 .modal-top :where(.modal-box){
