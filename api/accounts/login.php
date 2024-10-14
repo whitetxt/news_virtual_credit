@@ -1,5 +1,6 @@
 <?php
-require_once "../config.php";
+require_once __DIR__ . "/../config.php";
+require_once DB_PATH . "/users.php";
 if (empty($_POST["username"]) || empty($_POST["password"])) {
     header("Content-Type: application/json");
     die(json_encode(array("status" => "error", "message" => "Username and password are required.")));
@@ -62,23 +63,20 @@ if ($arr["password"] !== $password) {
     die(json_encode(array("status" => "error", "message" => "Incorrect username or password.")));
 }
 
-$stmt = $db->prepare("UPDATE users SET token = :tkn, expires_at = :exp WHERE username = :usr");
-$stmt->bindParam(":usr", $username, SQLITE3_TEXT);
 if (isset($_POST["remember"]) && $_POST["remember"] == "1") {
-    $stmt->bindValue(":exp", null, SQLITE3_NULL);
+    $expires_at = time() + 60 * 60 * 24 * 365;
 } else {
-    $stmt->bindValue(":exp", time() + 60 * 60 * 24, SQLITE3_INTEGER);
+    $expires_at = time() + 60 * 60 * 24;
 }
 
 $token = bin2hex(random_bytes(128));
-$stmt->bindParam(":tkn", $token, SQLITE3_TEXT);
 
-$res = $stmt->execute();
+$res = create_session($username, $token, $expires_at);
+
 if ($res === false) {
     $db->close();
-    die("Failed to execute database query.");
+    die(json_encode(["status" => "error", "message" => "Failed to create session."]));
 }
-$stmt->close();
 $db->close();
 
 if (isset($_POST["remember"]) && $_POST["remember"] == "1") {

@@ -45,22 +45,6 @@ function get_access_level($user)
     }
 }
 
-function get_user_from_token($token)
-{
-    $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READONLY);
-    $stmt = $db->prepare("SELECT * FROM users WHERE token = :tkn");
-    $stmt->bindParam(":tkn", $token);
-    $res = $stmt->execute();
-    if ($res === false) {
-        return false;
-    }
-    $arr = $res->fetchArray();
-    if ($arr === false) {
-        return false;
-    }
-    return db_to_user($arr);
-}
-
 function get_user_from_username($username)
 {
     $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READONLY);
@@ -77,16 +61,15 @@ function get_user_from_username($username)
     return db_to_user($arr);
 }
 
-function create_new_user($username, $password, $salt, $token)
+function create_new_user($username, $password, $salt)
 {
     $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READWRITE);
 
-    $stmt = $db->prepare("INSERT INTO users(username, password, salt, created_at, token, access_level, enabled) VALUES(:usr, :pwd, :slt, :crt, :tkn, :acl, :enb)");
+    $stmt = $db->prepare("INSERT INTO users(username, password, salt, created_at, access_level, enabled) VALUES(:usr, :pwd, :slt, :crt, :tkn, :acl, :enb)");
     $stmt->bindParam(":usr", $username);
     $stmt->bindParam(":pwd", $password);
     $stmt->bindParam(":slt", $salt);
     $stmt->bindValue(":crt", time(), SQLITE3_INTEGER);
-    $stmt->bindParam(":tkn", $token);
     $stmt->bindValue(":acl", USER_PERMISSION_USER);
     $stmt->bindValue(":enb", 1, SQLITE3_INTEGER);
 
@@ -103,7 +86,7 @@ function get_users()
     if ($res === false) {
         return false;
     }
-    $out = array();
+    $out = [];
     while ($arr = $res->fetchArray()) {
         array_push($out, db_to_user($arr));
     }
@@ -114,18 +97,16 @@ function update_user($usr)
 {
     $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READWRITE);
 
-    $stmt = $db->prepare("UPDATE users SET password = :pwd, salt = :slt, created_at = :crt, token = :tkn, expires_at = :exp, enabled = :enb, access_level = :acl, role = :rol, balance = :bal, secret = :sec WHERE username = :usr");
+    $stmt = $db->prepare("UPDATE users SET password = :pwd, salt = :slt, created_at = :crt, enabled = :enb, access_level = :acl, role = :rol, balance = :bal, secret = :sec WHERE username = :usr");
     $stmt->bindParam(":usr", $usr->username);
     $stmt->bindParam(":pwd", $usr->password);
     $stmt->bindParam(":slt", $usr->salt);
     $stmt->bindParam(":crt", $usr->created_at, SQLITE3_INTEGER);
-    $stmt->bindParam(":tkn", $usr->token);
     if ($usr->enabled) {
         $stmt->bindParam(":enb", $usr->enabled, SQLITE3_INTEGER);
     } else {
         $stmt->bindValue(":enb", null, SQLITE3_NULL);
     }
-    $stmt->bindParam(":exp", $usr->expires_at, SQLITE3_INTEGER);
     $stmt->bindParam(":acl", $usr->access_level, SQLITE3_INTEGER);
     $stmt->bindParam(":rol", $usr->role);
     $stmt->bindParam(":bal", $usr->balance);
@@ -157,7 +138,7 @@ function get_users_like($like)
     if ($res === false) {
         return false;
     }
-    $out = array();
+    $out = [];
     while ($arr = $res->fetchArray()) {
         array_push($out, db_to_user($arr));
     }
@@ -190,7 +171,7 @@ function get_roles()
     if ($res === false) {
         return false;
     }
-    $out = array();
+    $out = [];
     while ($arr = $res->fetchArray()) {
         array_push($out, db_to_role($arr));
     }
@@ -216,12 +197,12 @@ function db_to_session($arr)
     return new Session($arr["username"], $arr["token"], $arr["expires_at"]);
 }
 
-function create_session($user, $token, $expires_at)
+function create_session($username, $token, $expires_at)
 {
     $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READWRITE);
 
     $stmt = $db->prepare("INSERT INTO sessions(username, token, expires_at) VALUES(:usr, :tkn, :exp)");
-    $stmt->bindParam(":usr", $user->username);
+    $stmt->bindParam(":usr", $username);
     $stmt->bindParam(":tkn", $token);
     $stmt->bindParam(":exp", $expires_at, SQLITE3_INTEGER);
 
@@ -250,4 +231,54 @@ function update_session($session)
 
     $res = $stmt->execute();
     return $res;
+}
+
+function get_session($token)
+{
+    $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READONLY);
+    $stmt = $db->prepare("SELECT * FROM sessions WHERE token = :tkn");
+    $stmt->bindParam(":tkn", $token);
+    $res = $stmt->execute();
+    if ($res === false) {
+        return false;
+    }
+    $arr = $res->fetchArray();
+    if ($arr === false) {
+        return false;
+    }
+    return db_to_session($arr);
+}
+
+function get_user_sessions($username)
+{
+    $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READONLY);
+    $stmt = $db->prepare("SELECT * FROM sessions WHERE username = :usr");
+    $stmt->bindParam(":usr", $username);
+    $res = $stmt->execute();
+    if ($res === false) {
+        return false;
+    }
+    $out = [];
+    while ($arr = $res->fetchArray()) {
+        array_push($out, db_to_session($arr));
+    }
+    return $out;
+}
+
+function get_user_from_token($token)
+{
+    $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READONLY);
+    $stmt = $db->prepare("SELECT * FROM sessions WHERE token = :tkn");
+    $stmt->bindParam(":tkn", $token);
+    $res = $stmt->execute();
+    if ($res === false) {
+        return false;
+    }
+    $arr = $res->fetchArray();
+    if ($arr === false) {
+        return false;
+    }
+    $session = db_to_session($arr);
+    $username = $session->username;
+    return get_user_from_username($username);
 }

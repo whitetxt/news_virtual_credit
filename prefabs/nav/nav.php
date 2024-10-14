@@ -15,18 +15,11 @@
         require_once($guest);
     } else {
         $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READWRITE);
-        $stmt = $db->prepare("SELECT username FROM users WHERE token = :tkn");
-        $stmt->bindParam(":tkn", $_COOKIE["sulv-token"], SQLITE3_TEXT);
-        $res = $stmt->execute();
-        $arr = $res->fetchArray();
-        if ($arr === false) {
+        $user = get_user_from_token($_COOKIE["sulv-token"]);
+        if ($user === false) {
             setcookie("sulv-token", "", time() - 3600, "/");
             require_once($guest);
         } else {
-            $stmt = $db->prepare("SELECT access_level FROM users WHERE username = :usr");
-            $stmt->bindParam(":usr", $arr["username"], SQLITE3_TEXT);
-            $res = $stmt->execute();
-            $arr = $res->fetchArray();
             require_once($loggedin);
         }
     }

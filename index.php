@@ -3,10 +3,14 @@ require_once __DIR__ . "/config.php";
 require_once DB_PATH . "/users.php";
 require_once DB_PATH . "/money.php";
 if (isset($_COOKIE["sulv-token"]) == false) {
-    header("Location: accounts/login.php");
+    header("Location: /voucher/accounts/login.php");
     exit();
 }
 $user = get_user_from_token($_COOKIE["sulv-token"]);
+if ($user === false) {
+    header("Location: /voucher/accounts/login.php");
+    exit();
+}
 if ($user->access_level == USER_PERMISSION_SCAN) {
     header("Location: scan.php");
     exit();
