@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect("users_dev.db")
+conn = sqlite3.connect("users.db")
 cur = conn.cursor()
 
 cur.execute("ALTER TABLE users DROP COLUMN token;")
