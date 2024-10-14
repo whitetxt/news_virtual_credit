@@ -14,14 +14,12 @@ class User
     public $balance;
     public $secret;
 
-    public function __construct($username, $password, $salt, $created_at, $token, $expires_at, $access_level, $enabled, $role, $balance, $secret)
+    public function __construct($username, $password, $salt, $created_at, $access_level, $enabled, $role, $balance, $secret)
     {
         $this->username = $username;
         $this->password = $password;
         $this->salt = $salt;
         $this->created_at = $created_at;
-        $this->token = $token;
-        $this->expires_at = $expires_at;
         $this->access_level = $access_level;
         $this->enabled = $enabled;
         $this->role = $role;
@@ -29,12 +27,12 @@ class User
         $this->secret = $secret;
     }
 }
-;
 
 function db_to_user($arr)
 {
-    return new User($arr["username"], $arr["password"], $arr["salt"], $arr["created_at"], $arr["token"], $arr["expires_at"], $arr["access_level"], $arr["enabled"] == 1, $arr["role"], $arr["balance"], $arr["secret"]);
+    return new User($arr["username"], $arr["password"], $arr["salt"], $arr["created_at"], $arr["access_level"], $arr["enabled"] == 1, $arr["role"], $arr["balance"], $arr["secret"]);
 }
+
 
 function get_access_level($user)
 {
@@ -197,4 +195,59 @@ function get_roles()
         array_push($out, db_to_role($arr));
     }
     return $out;
+}
+
+class Session
+{
+    public $username;
+    public $token;
+    public $expires_at;
+
+    public function __construct($username, $token, $expires_at)
+    {
+        $this->username = $username;
+        $this->token = $token;
+        $this->expires_at = $expires_at;
+    }
+}
+
+function db_to_session($arr)
+{
+    return new Session($arr["username"], $arr["token"], $arr["expires_at"]);
+}
+
+function create_session($user, $token, $expires_at)
+{
+    $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READWRITE);
+
+    $stmt = $db->prepare("INSERT INTO sessions(username, token, expires_at) VALUES(:usr, :tkn, :exp)");
+    $stmt->bindParam(":usr", $user->username);
+    $stmt->bindParam(":tkn", $token);
+    $stmt->bindParam(":exp", $expires_at, SQLITE3_INTEGER);
+
+    $res = $stmt->execute();
+    return $res;
+}
+
+function delete_session($token)
+{
+    $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READWRITE);
+
+    $stmt = $db->prepare("DELETE FROM sessions WHERE token = :tkn");
+    $stmt->bindParam(":tkn", $token);
+    $res = $stmt->execute();
+    return $res;
+}
+
+function update_session($session)
+{
+    $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READWRITE);
+
+    $stmt = $db->prepare("UPDATE sessions SET username = :usr, expires_at = :exp WHERE token = :tkn");
+    $stmt->bindParam(":usr", $session->username);
+    $stmt->bindParam(":tkn", $session->token);
+    $stmt->bindParam(":exp", $session->expires_at, SQLITE3_INTEGER);
+
+    $res = $stmt->execute();
+    return $res;
 }
