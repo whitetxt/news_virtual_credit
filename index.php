@@ -33,7 +33,7 @@ if ($user->access_level == USER_PERMISSION_SCAN) {
             <span class="material-symbols-rounded">
                 shopping_cart
             </span>
-            <span>Spend Money</span>
+            <span>Spend Credit</span>
         </a>
         <span class="text-3xl text-primary">Recent Transactions:</span>
         <?php
@@ -42,16 +42,16 @@ if ($user->access_level == USER_PERMISSION_SCAN) {
             $transactions = array_slice($transactions, 0, 8);
         }
         foreach ($transactions as $trans) { ?>
-        <div class="card bg-base-100 w-96 shadow-xl">
-            <div class="card-body">
-                <h2 class="card-title"><?= $trans->type ?> - £<?= number_format($trans->amount, 2) ?></h2>
-                <p><?= $trans->description ?></p>
-                <p><?= date("d-m-y H:i:s", $trans->time) ?></p>
-                <div class="card-actions justify-end">
-                    <a class="btn btn-primary" href="receipt.php?id=<?= $trans->id ?>">View Receipt</a>
+            <div class="card bg-base-100 w-96 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title"><?= $trans->type ?> - £<?= number_format($trans->amount, 2) ?></h2>
+                    <p><?= $trans->description ?></p>
+                    <p><?= date("d-m-y H:i:s", $trans->time) ?></p>
+                    <div class="card-actions justify-end">
+                        <a class="btn btn-primary" href="receipt.php?id=<?= $trans->id ?>">View Receipt</a>
+                    </div>
                 </div>
             </div>
-        </div>
         <?php }
         ?>
     </div>
