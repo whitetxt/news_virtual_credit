@@ -65,7 +65,7 @@ function create_new_user($username, $password, $salt)
 {
     $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READWRITE);
 
-    $stmt = $db->prepare("INSERT INTO users(username, password, salt, created_at, access_level, enabled) VALUES(:usr, :pwd, :slt, :crt, :tkn, :acl, :enb)");
+    $stmt = $db->prepare("INSERT INTO users(username, password, salt, created_at, access_level, enabled) VALUES(:usr, :pwd, :slt, :crt, :acl, :enb)");
     $stmt->bindParam(":usr", $username);
     $stmt->bindParam(":pwd", $password);
     $stmt->bindParam(":slt", $salt);
