@@ -2,14 +2,17 @@
 require_once "./config.php";
 require_once API_PATH . "/accounts/functions.php";
 if (!isset($_POST["username"]) || !isset($_POST["secret"]) || !isset($_POST["amount"])) {
-    die(json_encode(array("success" => false, "error" => "Missing parameters.")));
+    die(json_encode(["success" => false, "error" => "Missing parameters."]));
 }
 
 if (!logged_in()) {
-    die(json_encode(array("success" => false, "error" => "Not logged in.")));
+    die(json_encode(["success" => false, "error" => "Not logged in."]));
 }
 
 $me = current_user();
+if ($me->access_level != USER_PERMISSION_ADMIN || $me->access_level != USER_PERMISSION_SCAN) {
+    die(json_encode(["success" => false, "error" => "Insufficient permissions."]));
+}
 
 $username = $_POST["username"];
 $secret = $_POST["secret"];
