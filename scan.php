@@ -141,7 +141,7 @@ function tick() {
 function spend() {
     const username = latest_data.username;
     const secret = latest_data.secret;
-    const amount = parseFloat(document.getElementById("amount").value)
+    const amount = parseFloat(document.getElementById("amount").value);
     modal_title.innerText = "Processing charge...";
     modal_info.innerHTML = '<span class="loading loading-spinner loading-lg"></span>';
     modal_actions.classList.add("hidden");
@@ -160,7 +160,7 @@ function spend() {
         .then(data => {
             modal.classList.toggle("modal-open");
             if (data.success) {
-                create_alert("Successfully charged account!", "success");
+                create_alert("Successfully charged account!", 3, "success");
                 setTimeout(() => {
                     window.location.reload();
                 }, 5000);
