@@ -1,5 +1,5 @@
 <?php
-require_once "config.php";
+require_once __DIR__ . "/../../config.php";
 require_once API_PATH . "/accounts/functions.php";
 require_flags($_COOKIE["sulv-token"], ["ADMIN"]);
 require_once DB_PATH . "/users.php";

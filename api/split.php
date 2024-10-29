@@ -1,5 +1,5 @@
 <?php
-require_once "config.php";
+require_once __DIR__ . "/config.php";
 require_once API_PATH . "/accounts/functions.php";
 if (!isset($_GET["id"])) {
     die(json_encode(array("success" => false, "error" => "No Voucher ID Provided")));
