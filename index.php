@@ -11,10 +11,6 @@ if ($user === false) {
     header("Location: /voucher/accounts/login.php");
     exit();
 }
-if ($user->has_permission("SCAN")) {
-    header("Location: scan.php");
-    exit();
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +38,14 @@ if ($user->has_permission("SCAN")) {
                 attach_money
             </span>
             <span>Deduct Money</span>
+        </a>
+        <?php } 
+        if ($user->has_permission("SCAN")) { ?>
+        <a class="btn" href="scan.php">
+            <span class="material-symbols-rounded">
+                photo_camera
+            </span>
+            <span>Scan</span>
         </a>
         <?php } ?>
         <dialog id="deduct_modal" class="modal">
