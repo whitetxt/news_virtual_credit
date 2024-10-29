@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../../config.php";
 require_once API_PATH . "/accounts/functions.php";
-require_minimum_permissions($_COOKIE["sulv-token"], USER_PERMISSION_ADMIN);
+require_flags($_COOKIE["sulv-token"], ["ADMIN"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">

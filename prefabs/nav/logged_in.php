@@ -5,7 +5,7 @@
     if ($user !== false) {
         echo '<div> ' . $user->username . ' </div>';
     }
-    if ($user->access_level > 0) { ?>
+    if ($user->has_permission("ADMIN")) { ?>
         <a href="/voucher/admin/index.php" class="btn mx-2">
             <span class="material-symbols-rounded">
                 admin_panel_settings

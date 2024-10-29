@@ -8,41 +8,43 @@ class User
     public $created_at;
     public $token;
     public $expires_at;
-    public $access_level;
     public $enabled;
     public $role;
     public $balance;
     public $secret;
+    public $flags;
+    public $permissions;
 
-    public function __construct($username, $password, $salt, $created_at, $access_level, $enabled, $role, $balance, $secret)
+    public function __construct($username, $password, $salt, $created_at, $enabled, $role, $balance, $secret, $flags)
     {
         $this->username = $username;
         $this->password = $password;
         $this->salt = $salt;
         $this->created_at = $created_at;
-        $this->access_level = $access_level;
         $this->enabled = $enabled;
         $this->role = $role;
         $this->balance = $balance;
         $this->secret = $secret;
+        $this->flags = $flags;
+        $this->permissions = [];
+        foreach (FLAGS as $flag) {
+            if ($this->flags & constant("FLAG_" . strtoupper($flag))) {
+                $this->permissions[$flag] = true;
+            } else {
+                $this->permissions[$flag] = false;
+            }
+        }
+    }
+
+    public function has_permission($permission) {
+        // var_dump($this->permissions);
+        return $this->permissions[$permission];
     }
 }
 
 function db_to_user($arr)
 {
-    return new User($arr["username"], $arr["password"], $arr["salt"], $arr["created_at"], $arr["access_level"], $arr["enabled"] == 1, $arr["role"], $arr["balance"], $arr["secret"]);
-}
-
-
-function get_access_level($user)
-{
-    if ($user->access_level == 0) {
-        return 'Member';
-    } else if ($user->access_level == 1) {
-        return 'Admin';
-    } else {
-        return 'Unknown';
-    }
+    return new User($arr["username"], $arr["password"], $arr["salt"], $arr["created_at"], $arr["enabled"] == 1, $arr["role"], $arr["balance"], $arr["secret"], $arr["flags"]);
 }
 
 function get_user_from_username($username)
@@ -65,12 +67,11 @@ function create_new_user($username, $password, $salt)
 {
     $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READWRITE);
 
-    $stmt = $db->prepare("INSERT INTO users(username, password, salt, created_at, access_level, enabled) VALUES(:usr, :pwd, :slt, :crt, :acl, :enb)");
+    $stmt = $db->prepare("INSERT INTO users(username, password, salt, created_at, enabled) VALUES(:usr, :pwd, :slt, :crt, :enb)");
     $stmt->bindParam(":usr", $username);
     $stmt->bindParam(":pwd", $password);
     $stmt->bindParam(":slt", $salt);
     $stmt->bindValue(":crt", time(), SQLITE3_INTEGER);
-    $stmt->bindValue(":acl", USER_PERMISSION_USER);
     $stmt->bindValue(":enb", 1, SQLITE3_INTEGER);
 
     $res = $stmt->execute();
@@ -97,7 +98,7 @@ function update_user($usr)
 {
     $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READWRITE);
 
-    $stmt = $db->prepare("UPDATE users SET password = :pwd, salt = :slt, created_at = :crt, enabled = :enb, access_level = :acl, role = :rol, balance = :bal, secret = :sec WHERE username = :usr");
+    $stmt = $db->prepare("UPDATE users SET password = :pwd, salt = :slt, created_at = :crt, enabled = :enb, role = :rol, balance = :bal, secret = :sec, flags = :flg WHERE username = :usr");
     $stmt->bindParam(":usr", $usr->username);
     $stmt->bindParam(":pwd", $usr->password);
     $stmt->bindParam(":slt", $usr->salt);
@@ -107,10 +108,10 @@ function update_user($usr)
     } else {
         $stmt->bindValue(":enb", null, SQLITE3_NULL);
     }
-    $stmt->bindParam(":acl", $usr->access_level, SQLITE3_INTEGER);
     $stmt->bindParam(":rol", $usr->role);
     $stmt->bindParam(":bal", $usr->balance);
     $stmt->bindParam(":sec", $usr->secret);
+    $stmt->bindParam(":flg", $usr->flags);
 
     $res = $stmt->execute();
     return $res;
