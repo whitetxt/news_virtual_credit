@@ -30,7 +30,7 @@ function logged_in()
     return true;
 }
 
-function require_minimum_permissions($token, $access_level)
+function require_flags($token, $flags)
 {
     if (empty($token)) {
         header("location: /voucher/");
@@ -38,9 +38,16 @@ function require_minimum_permissions($token, $access_level)
     }
 
     $user = get_user_from_token($token);
-    if ($user === false || $user->access_level < $access_level) {
+    if ($user === false) {
         header("location: /voucher/");
         return;
+    }
+
+    foreach ($flags as $flag) {
+        if (!$user->has_permission($flag)) {
+            header("location: /voucher/");
+            return;
+        }
     }
 }
 

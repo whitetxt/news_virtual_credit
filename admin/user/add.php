@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../../config.php";
 require_once API_PATH . "/accounts/functions.php";
-require_minimum_permissions($_COOKIE["sulv-token"], USER_PERMISSION_ADMIN);
+require_flags($_COOKIE["sulv-token"], ["ADMIN"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,33 +16,41 @@ require_minimum_permissions($_COOKIE["sulv-token"], USER_PERMISSION_ADMIN);
     <div id="site" class="flex flex-col items-center gap-4">
         <a href="../index.php" class="btn">&lt; Back</a>
         <h2 class="text-primary text-2xl">Create a User</h2>
-        <label>
-            <div class="label">
-                <span class="label-text">Username</span>
+        <div class="flex flex-row items-center gap-4">
+            <div class="card bg-base-200 w-96 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title">User Details</h2>
+                    <label>
+                        <div class="label">
+                            <span class="label-text">Username</span>
+                        </div>
+                        <input type="text" id="uname" name="uname" class="input input-secondary">
+                    </label>
+                    <label>
+                        <div class="label">
+                            <span class="label-text">Password</span>
+                        </div>
+                        <input type="password" id="pass" name="pass" class="input input-secondary">
+                    </label>
+                    <label class="label cursor-pointer gap-8">
+                        <span class="label-text">Account Enabled</span>
+                        <input type="checkbox" id="enb" name="enb" class="checkbox checkbox-secondary">
+                    </label>
+                </div>
             </div>
-            <input type="text" id="uname" name="uname" class="input input-secondary">
-        </label>
-        <label>
-            <div class="label">
-                <span class="label-text">Password</span>
+            <div class="card bg-base-200 w-96 shadow-xl">
+                <div class="card-body grid grid-cols-2">
+                    <h2 class="card-title col-span-2">User Permissions</h2>
+                    <?php
+                    foreach (FLAGS as $flag) { ?>
+                        <label class="label cursor-pointer">
+                            <span class="label-text"><?=$flag?></span>
+                            <input type="checkbox" class="checkbox checkbox-secondary perm-cb" data-num="<?=constant("FLAG_" . $flag)?>"/>
+                        </label>
+                    <?php } ?>
+                </div>
             </div>
-            <input type="password" id="pass" name="pass" class="input input-secondary">
-        </label>
-        <label>
-            <div class="label">
-                <span class="label-text">Access Level</span>
-            </div>
-            <select id="acclvl" name="acclvl" class="select select-secondary">
-                <option disabled selected value="" hidden>Select an access level</option>
-                <option value="-1">Scanner</option>
-                <option value="0">User</option>
-                <option value="1">Admin</option>
-            </select>
-        </label>
-        <label class="label cursor-pointer gap-8">
-            <span class="label-text">Account Enabled</span>
-            <input type="checkbox" id="enb" name="enb" class="checkbox checkbox-secondary">
-        </label>
+        </div>
         <button class="btn" onclick="create_user()">Create User</button>
     </div>
     <?php require(PREFAB_PATH . "/global/footer.php"); ?>
@@ -60,8 +68,10 @@ require_minimum_permissions($_COOKIE["sulv-token"], USER_PERMISSION_ADMIN);
     function create_user() {
         const username = document.getElementById("uname").value;
         const password = document.getElementById("pass").value;
-        const access_level = document.querySelector("select#acclvl").value;
         const enabled = document.querySelector("input#enb").checked ? "enabled" : "disabled";
+
+        const flag_checkboxes = document.querySelectorAll("input.perm-cb");
+        const flag_number = Array.from(flag_checkboxes).map((cb) => cb.checked ? parseInt(cb.getAttribute("data-num")) : 0).reduce((a, b) => a + b, 0);
 
         digestMessage(password).then((digest) => {
             fetch("/voucher/api/accounts/register.php", {
@@ -69,7 +79,7 @@ require_minimum_permissions($_COOKIE["sulv-token"], USER_PERMISSION_ADMIN);
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
                 },
-                body: `username=${username}&access_level=${access_level}&enabled=${enabled}&password=${digest}`
+                body: `username=${username}&flags=${flag_number}&enabled=${enabled}&password=${digest}`
             }).then(resp => resp.json()).then(data => {
                 if (data.status === "error") {
                     create_alert(data.message);

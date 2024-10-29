@@ -1,8 +1,8 @@
 <?php
-require_once "config.php";
+require_once __DIR__ . "/../config.php";
 require_once DB_PATH . "/users.php";
 
-if (empty($_POST["username"]) || empty($_POST["password"]) || empty($_POST["enabled"] || empty($_POST["access_level"]))) {
+if (empty($_POST["username"]) || empty($_POST["password"]) || empty($_POST["enabled"] || empty($_POST["flags"]))) {
     header("Content-Type: application/json");
     die(json_encode(array("status" => "error", "message" => "Username, password, enabled and access level are required.")));
 }
@@ -10,7 +10,7 @@ if (empty($_POST["username"]) || empty($_POST["password"]) || empty($_POST["enab
 $username = $_POST["username"];
 $password = $_POST["password"];
 $enabled = $_POST["enabled"];
-$access_level = $_POST["access_level"];
+$flags = $_POST["flags"];
 
 $salt = bin2hex(random_bytes(16));
 $password = hash("sha512", $salt . $password);
@@ -32,7 +32,7 @@ if ($result === false) {
 }
 
 $user = get_user_from_username($username);
-$user->access_level = $access_level;
+$user->flags = $flags;
 $user->enabled = $enabled === "enabled";
 $result = update_user($user);
 

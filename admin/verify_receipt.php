@@ -6,7 +6,7 @@ if (isset($_COOKIE["sulv-token"]) == false) {
     exit();
 }
 $user = get_user_from_token($_COOKIE["sulv-token"]);
-if (($user->access_level != USER_PERMISSION_SCAN) && ($user->access_level != USER_PERMISSION_ADMIN)) {
+if ((!$user->has_permission("SCAN")) && (!$user->has_permission("ADMIN"))) {
     header("Location: /voucher/index.php");
     exit();
 }

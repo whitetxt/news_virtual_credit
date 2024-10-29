@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../../config.php";
 require_once API_PATH . "/accounts/functions.php";
-require_minimum_permissions($_COOKIE["sulv-token"], USER_PERMISSION_ADMIN);
+require_flags($_COOKIE["sulv-token"], ["ADMIN"]);
 $me = current_user();
 ?>
 <!DOCTYPE html>
@@ -25,9 +25,7 @@ $me = current_user();
                 echo '<h3> No other users in the database. </h3>';
                 return;
             }
-            foreach ($users as $user) {
-                if ($user->access_level == USER_PERMISSION_SCAN)
-                    continue; ?>
+            foreach ($users as $user) {?>
             <label class="label cursor-pointer">
                 <span class="label-text mr-2"><?= $user->username ?> (<?= $user->role ?>)</span>
                 <input type="checkbox" class="checkbox checkbox-secondary" name="<?= $user->username ?>" />

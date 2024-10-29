@@ -10,7 +10,7 @@ if (!logged_in()) {
 }
 
 $me = current_user();
-if ($me->access_level != USER_PERMISSION_ADMIN && $me->access_level != USER_PERMISSION_SCAN) {
+if (!$me->has_permission("ADMIN") && $me->has_permission("SCAN")) {
     die(json_encode(["success" => false, "error" => "Insufficient permissions."]));
 }
 

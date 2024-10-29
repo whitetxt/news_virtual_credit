@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect("users.db")
+conn = sqlite3.connect("../users.db")
 cur = conn.cursor()
 
 cur.execute("ALTER TABLE users ADD COLUMN balance REAL DEFAULT 0;")

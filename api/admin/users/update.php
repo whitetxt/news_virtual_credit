@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../../config.php";
 require_once API_PATH . "/accounts/functions.php";
-require_minimum_permissions($_COOKIE["sulv-token"], USER_PERMISSION_ADMIN);
+require_flags($_COOKIE["sulv-token"], ["ADMIN"]);
 require_once DB_PATH . "/users.php";
 
 if (empty($_POST["name"])) {
@@ -15,8 +15,8 @@ if ($usr === false) {
     die(json_encode(["status" => "error", "message" => "User doesn't exist."]));
 }
 
-if (isset($_POST["access_level"])) {
-    $usr->access_level = $_POST["access_level"];
+if (isset($_POST["flags"])) {
+    $usr->flags = $_POST["flags"];
 }
 
 if (isset($_POST["enabled"])) {

@@ -11,10 +11,6 @@ if ($user === false) {
     header("Location: /voucher/accounts/login.php");
     exit();
 }
-if ($user->access_level == USER_PERMISSION_SCAN) {
-    header("Location: scan.php");
-    exit();
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,12 +32,20 @@ if ($user->access_level == USER_PERMISSION_SCAN) {
             <span>Spend Credit</span>
         </a>
         <?php
-        if (in_array($user->username, $self_deduct_users)) { ?>
+        if ($user->has_permission("SELF_CHARGE")) { ?>
         <a class="btn" onclick="modal.classList.toggle('modal-open')">
             <span class="material-symbols-rounded">
                 attach_money
             </span>
             <span>Deduct Money</span>
+        </a>
+        <?php } 
+        if ($user->has_permission("SCAN")) { ?>
+        <a class="btn" href="scan.php">
+            <span class="material-symbols-rounded">
+                photo_camera
+            </span>
+            <span>Scan</span>
         </a>
         <?php } ?>
         <dialog id="deduct_modal" class="modal">
