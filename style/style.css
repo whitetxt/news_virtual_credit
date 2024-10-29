@@ -2797,6 +2797,10 @@ html{
   width: 100%;
 }
 
+.w-64{
+  width: 16rem;
+}
+
 .max-w-xs{
   max-width: 20rem;
 }

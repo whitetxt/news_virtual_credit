@@ -24,6 +24,7 @@ require_flags($_COOKIE["sulv-token"], ["ADMIN"]);
         <a href="money/add.php" class="btn">Give Money</a>
         <a href="money/delete.php" class="btn">Remove Money</a>
         <a href="verify_receipt.php" class="btn">Verify Receipt</a>
+        <a href="report.php" class="btn">Generate Report</a>
     </div>
     <?php require(PREFAB_PATH . "/global/footer.php"); ?>
     <?php require(PREFAB_PATH . "/global/cookie.php"); ?>

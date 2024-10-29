@@ -104,3 +104,20 @@ function get_users_transactions($username)
     }
     return $out;
 }
+
+function get_transactions_between($start_timestamp, $end_timestamp) {
+    $db = new SQLite3(USERS_DB, SQLITE3_OPEN_READONLY);
+
+    $stmt = $db->prepare("SELECT * FROM transactions WHERE time >= :start AND time <= :end ORDER BY id ASC");
+    $stmt->bindParam(":start", $start_timestamp);
+    $stmt->bindParam(":end", $end_timestamp);
+    $res = $stmt->execute();
+    if ($res === false) {
+        return false;
+    }
+    $out = array();
+    while ($arr = $res->fetchArray()) {
+        array_push($out, db_to_transaction($arr));
+    }
+    return $out;
+}
