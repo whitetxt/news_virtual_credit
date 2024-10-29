@@ -111,7 +111,7 @@
 }
 
 /*
-! tailwindcss v3.4.13 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.14 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -554,7 +554,7 @@ video {
 
 /* Make elements with the HTML hidden attribute stay hidden by default */
 
-[hidden] {
+[hidden]:where(:not([hidden="until-found"])) {
   display: none;
 }
 
@@ -997,6 +997,11 @@ html{
       border-color: color-mix(in oklab, var(--fallback-p,oklch(var(--p)/1)) 90%, black);
     }
   }
+}
+
+.form-control{
+  display: flex;
+  flex-direction: column;
 }
 
 .label{
@@ -1748,6 +1753,13 @@ html{
   color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
 }
 
+.label-text-alt{
+  font-size: 0.75rem;
+  line-height: 1rem;
+  --tw-text-opacity: 1;
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
+}
+
 .input input{
   --tw-bg-opacity: 1;
   background-color: var(--fallback-p,oklch(var(--p)/var(--tw-bg-opacity)));
@@ -2091,6 +2103,10 @@ html{
   100%{
     transform: translateY(0);
   }
+}
+
+.select-bordered{
+  border-color: var(--fallback-bc,oklch(var(--bc)/0.2));
 }
 
 .select:focus{
@@ -2719,6 +2735,10 @@ html{
   top: 0.5rem;
 }
 
+.col-span-2{
+  grid-column: span 2 / span 2;
+}
+
 .m-auto{
   margin: auto;
 }
@@ -2793,6 +2813,10 @@ html{
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.flex-row{
+  flex-direction: row;
+}
+
 .flex-col{
   flex-direction: column;
 }
@@ -2830,6 +2854,11 @@ html{
 .bg-base-100{
   --tw-bg-opacity: 1;
   background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
+}
+
+.bg-base-200{
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity)));
 }
 
 .py-4{
