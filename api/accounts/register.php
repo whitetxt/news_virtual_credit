@@ -1,5 +1,5 @@
 <?php
-require_once "config.php";
+require_once __DIR__ . "/../config.php";
 require_once DB_PATH . "/users.php";
 
 if (empty($_POST["username"]) || empty($_POST["password"]) || empty($_POST["enabled"] || empty($_POST["flags"]))) {
