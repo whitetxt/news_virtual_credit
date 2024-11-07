@@ -1,0 +1,12 @@
+[/voucher/api/admin/money/add.php@07-11-2024 14:58:50] - Update user - Failed to update user
+Additional data: {"error":"attempt to write a readonly database"}
+[/voucher/api/admin/money/add.php@07-11-2024 14:58:50] - Failed to update user.
+Additional data: {"POST":{"username":"AshleyS1|SunW1","amount":"4","reason":"Added by JR1"},"username":"AshleyS1"}
+[/voucher/api/admin/money/add.php@07-11-2024 14:58:52] - Update user - Failed to update user
+Additional data: {"error":"attempt to write a readonly database"}
+[/voucher/api/admin/money/add.php@07-11-2024 14:58:52] - Failed to update user.
+Additional data: {"POST":{"username":"AshleyS1|SunW1|ImranD1","amount":"4","reason":"Added by JR1"},"username":"AshleyS1"}
+[/voucher/api/admin/money/add.php@07-11-2024 14:58:55] - Update user - Failed to update user
+Additional data: {"error":"attempt to write a readonly database"}
+[/voucher/api/admin/money/add.php@07-11-2024 14:58:55] - Failed to update user.
+Additional data: {"POST":{"username":"AshleyS1|SunW1|ImranD1","amount":"4","reason":"Added by JR1"},"username":"AshleyS1"}

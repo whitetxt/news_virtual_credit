@@ -3,3 +3,16 @@
 [/voucher/@07-11-2024 14:51:38] - Page loaded
 [/voucher/@07-11-2024 14:51:38] - Page loaded
 [/voucher/@07-11-2024 14:51:38] - Page loaded
+[/voucher/admin/index.php@07-11-2024 14:58:45] - Page loaded
+[/voucher/admin/money/add.php@07-11-2024 14:58:47] - Page loaded
+[/voucher/api/admin/money/add.php@07-11-2024 14:58:50] - Page loaded
+[/voucher/api/admin/money/add.php@07-11-2024 14:58:52] - Page loaded
+[/voucher/api/admin/money/add.php@07-11-2024 14:58:55] - Page loaded
+[/voucher/api/admin/money/add.php@07-11-2024 14:59:36] - Page loaded
+[/voucher/api/admin/money/add.php@07-11-2024 14:59:36] - Added money to user.
+Additional data: {"POST":{"username":"AshleyS1|SunW1|ImranD1","amount":"4","reason":"Added by JR1"},"usernames":["AshleyS1","SunW1","ImranD1"],"amount":"4","reason":"Added by JR1"}
+[/voucher/admin/index.php@07-11-2024 14:59:39] - Page loaded
+[/voucher/admin/money/delete.php@07-11-2024 14:59:42] - Page loaded
+[/voucher/api/admin/money/delete.php@07-11-2024 14:59:45] - Page loaded
+[/voucher/api/admin/money/delete.php@07-11-2024 14:59:45] - Removed money from user.
+Additional data: {"POST":{"username":"DaiB1","amount":"4"},"user":{"username":"DaiB1","password":"ab9b2ee73300644686a080eed871f0b8fd0517d11422309bd45e6bfb8113393b","salt":"46a5c6f3e5c6b8676c36066f1e28a2e6","created_at":1711064667,"token":null,"expires_at":null,"enabled":1,"role":"Presenter","balance":4,"secret":null,"flags":0,"permissions":{"ADMIN":false,"SCAN":false,"SELF_CHARGE":false}},"amount":"4","reason":"Removed by admin."}
