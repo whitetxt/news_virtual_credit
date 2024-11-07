@@ -45,4 +45,5 @@ if ($result === false) {
     die(json_encode(["status" => "error", "message" => "Failed to execute database query."]));
 }
 
+log_action("Removed money from user.", ["POST" => $_POST, "user" => $usr, "amount" => $amt, "reason" => $reason]);
 die(json_encode(value: ["status" => "success"]));

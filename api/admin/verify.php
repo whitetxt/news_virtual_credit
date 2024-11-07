@@ -21,4 +21,5 @@ if ($trans->amount != $_POST["amount"] || $trans->time != $_POST["time"]) {
     die(json_encode(["status" => "success", "valid" => false, "message" => "Transaction doesn't match."]));
 }
 
+log_action("Verified transaction.", ["transaction" => $trans]);
 die(json_encode(["status" => "success", "valid" => true]));

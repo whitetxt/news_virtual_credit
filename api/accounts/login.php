@@ -85,4 +85,5 @@ if (isset($_POST["remember"]) && $_POST["remember"] == "1") {
 } else {
     setcookie("sulv-token", $token, time() + 60 * 60 * 24 * 7, "/");
 }
+log_action('Logged in', ['username' => $username]);
 die(json_encode(array("status" => "success")));

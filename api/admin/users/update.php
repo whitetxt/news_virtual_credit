@@ -46,4 +46,5 @@ if ($res === false) {
     die(json_encode(["status" => "error", "message" => "Failed to update."]));
 }
 
+log_action("User updated", ["POST" => $_POST, "user" => $usr]);
 die(json_encode(["status" => "success"]));

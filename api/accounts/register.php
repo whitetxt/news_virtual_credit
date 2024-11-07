@@ -41,4 +41,5 @@ if ($result === false) {
     die(json_encode(array("status" => "error", "message" => "Failed to execute database query.")));
 }
 
+log_action("Created new user", ["username" => $username]);
 die(json_encode(array("status" => "success")));

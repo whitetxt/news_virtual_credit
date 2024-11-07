@@ -35,5 +35,5 @@ foreach ($usernames as $username) {
     }
 }
 
-header("Content-Type: application/json");
+log_action("Added money to user.", ["POST" => $_POST, "usernames" => $usernames, "amount" => $amount, "reason" => $reason]);
 die(json_encode(array("status" => "success")));

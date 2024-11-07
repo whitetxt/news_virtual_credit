@@ -61,4 +61,4 @@ function log_action($action_name, $data = []) {
     fclose($log);
 }
 
-log_action("page load");
+log_action("Page loaded");

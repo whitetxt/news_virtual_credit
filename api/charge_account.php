@@ -55,4 +55,5 @@ if ($res === false) {
 $charge->secret = bin2hex(random_bytes(32));
 update_user($charge);
 
+log_action("Charge account", ["user" => $charge, "amount" => $amount, "by" => $me]);
 die(json_encode(array("success" => true)));

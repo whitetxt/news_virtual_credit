@@ -40,4 +40,5 @@ if ($res === false) {
     die(json_encode(["success" => false, "error" => "Unknown error. Try again."]));
 }
 
+log_action("Self charge", ["user" => $me->username, "amount" => $amount]);
 die(json_encode(array("success" => true)));
