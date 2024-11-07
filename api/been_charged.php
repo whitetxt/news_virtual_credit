@@ -2,6 +2,7 @@
 require_once "./config.php";
 require_once API_PATH . "/accounts/functions.php";
 if (!logged_in()) {
+    log_error("Not logged in");
     die(json_encode(array("success" => false, "error" => "Not logged in.")));
 }
 

@@ -2,6 +2,7 @@
 require_once "./config.php";
 require_once API_PATH . "/accounts/functions.php";
 if (!isset($_POST["amount"])) {
+    log_error('Missing parameters', ['POST' => $_POST]);
     die(json_encode(["success" => false, "error" => "Missing parameters."]));
 }
 
@@ -16,6 +17,7 @@ $amount = floatval($_POST["amount"]);
 require_once DB_PATH . "/money.php";
 
 if ($me->balance < $amount) {
+    log_error('Insufficient balance', ['balance' => $me->balance, 'amount' => $amount, 'me' => $me]);
     die(json_encode(["success" => false, "error" => "Insufficient funds."]));
 }
 

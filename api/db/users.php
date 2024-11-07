@@ -58,6 +58,7 @@ function get_user_from_username($username)
     }
     $arr = $res->fetchArray();
     if ($arr === false) {
+        log_error("Get user from username - User not found");
         return false;
     }
     return db_to_user($arr);
@@ -114,6 +115,9 @@ function update_user($usr)
     $stmt->bindParam(":flg", $usr->flags);
 
     $res = $stmt->execute();
+    if (!$res) {
+        log_error("Update user - Failed to update user", ["error" => $db->lastErrorMsg()]);
+    }
     return $res;
 }
 
@@ -231,6 +235,9 @@ function update_session($session)
     $stmt->bindParam(":exp", $session->expires_at, SQLITE3_INTEGER);
 
     $res = $stmt->execute();
+    if (!$res) {
+        log_error("Update session - Failed to update session", ["error" => $db->lastErrorMsg()]);
+    }
     return $res;
 }
 
@@ -245,6 +252,7 @@ function get_session($token)
     }
     $arr = $res->fetchArray();
     if ($arr === false) {
+        log_error("Get session - Session not found");
         return false;
     }
     return db_to_session($arr);
@@ -277,6 +285,7 @@ function get_user_from_token($token)
     }
     $arr = $res->fetchArray();
     if ($arr === false) {
+        log_error("Get user from token - Session not found");
         return false;
     }
     $session = db_to_session($arr);

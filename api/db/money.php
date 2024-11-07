@@ -37,6 +37,7 @@ function get_transaction_from_id($id)
     }
     $arr = $res->fetchArray();
     if ($arr === false) {
+        log_error("Get transaction from id - Transaction not found", ["id" => $id]);
         return false;
     }
     return db_to_transaction($arr);
@@ -54,6 +55,9 @@ function create_transaction($username, $type, $amount, $description)
     $stmt->bindValue(":tim", time());
 
     $res = $stmt->execute();
+    if (!$res) {
+        log_error("Failed to create transaction", ["username" => $username, "type" => $type, "amount" => $amount, "description" => $description, "error" => $db->lastErrorMsg()]);
+    }
     return $res;
 }
 
@@ -69,6 +73,9 @@ function create_new_transaction_with_time($username, $type, $amount, $descriptio
     $stmt->bindParam(":tim", $time);
 
     $res = $stmt->execute();
+    if (!$res) {
+        log_error("Failed to create transaction", ["username" => $username, "type" => $type, "amount" => $amount, "description" => $description, "time" => $time, "error" => $db->lastErrorMsg()]);
+    }
     return $res;
 }
 

@@ -7,6 +7,7 @@ require_once DB_PATH . "/money.php";
 
 if (empty($_GET["start"]) || empty($_GET["end"])) {
     header("Content-Type: application/json");
+    log_error("Missing Fields", ["GET" => $_GET]);
     die(json_encode(["status" => "error", "message" => "Missing fields."]));
 }
 

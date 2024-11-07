@@ -3,7 +3,7 @@ require_once __DIR__ . "/../config.php";
 require_once DB_PATH . "/users.php";
 
 if (empty($_POST["username"]) || empty($_POST["password"]) || empty($_POST["enabled"] || empty($_POST["flags"]))) {
-    header("Content-Type: application/json");
+    log_error("Missing parameters", ["POST" => $_POST]);
     die(json_encode(array("status" => "error", "message" => "Username, password, enabled and access level are required.")));
 }
 
@@ -19,7 +19,7 @@ $password = hash("sha256", $salt . $password);
 
 $existing_user = get_user_from_username($username);
 if ($existing_user !== false) {
-    header("Content-Type: application/json");
+    log_error("Username is taken", ["username" => $username]);
     die(json_encode(array("status" => "error", "message" => "Username is taken.")));
 }
 
@@ -27,7 +27,7 @@ $token = bin2hex(random_bytes(128));
 $result = create_new_user($username, $password, $salt, $token);
 
 if ($result === false) {
-    header("Content-Type: application/json");
+    log_error("Failed to create user", ["username" => $username]);
     die(json_encode(array("status" => "error", "message" => "Failed to execute database query.")));
 }
 
@@ -37,9 +37,8 @@ $user->enabled = $enabled === "enabled";
 $result = update_user($user);
 
 if ($result === false) {
-    header("Content-Type: application/json");
+    log_error("Failed to update user", ["username" => $username]);
     die(json_encode(array("status" => "error", "message" => "Failed to execute database query.")));
 }
 
-header("Content-Type: application/json");
 die(json_encode(array("status" => "success")));

@@ -5,13 +5,13 @@ require_flags($_COOKIE["sulv-token"], ["ADMIN"]);
 require_once DB_PATH . "/users.php";
 
 if (empty($_POST["name"])) {
-    header("Content-Type: application/json");
+    log_error("Missing fields", ["POST" => $_POST]);
     die(json_encode(["status" => "error", "message" => "Missing fields."]));
 }
 
 $usr = get_user_from_username($_POST["name"]);
 if ($usr === false) {
-    header("Content-Type: application/json");
+    log_error("User doesn't exist", ["POST" => $_POST]);
     die(json_encode(["status" => "error", "message" => "User doesn't exist."]));
 }
 
@@ -42,9 +42,8 @@ if (isset($_POST["pass"])) {
 
 $res = update_user($usr);
 if ($res === false) {
-    header("Content-Type: application/json");
+    log_error("Failed to update user", ["POST" => $_POST, "user" => $usr]);
     die(json_encode(["status" => "error", "message" => "Failed to update."]));
 }
 
-header("Content-Type: application/json");
 die(json_encode(["status" => "success"]));
