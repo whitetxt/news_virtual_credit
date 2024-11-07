@@ -27,4 +27,38 @@ while ($row = $res->fetchArray(SQLITE3_ASSOC)) {
 }
 define("FLAGS", $flags);
 
-//$self_deduct_users = ["JamesG1"];
+define("USAGE_LOG", BASE_PATH . "/logs/usage.log");
+define("ERROR_LOG", BASE_PATH . "/logs/error.log");
+
+foreach ([USAGE_LOG, ERROR_LOG] as $file) {
+    if (!file_exists($file)) {
+        $log = fopen($file, "w");
+        fclose($log);
+    }
+}
+
+function log_error($error, $data = []) {
+    $date = date("d-m-Y H:i:s");
+    $uri = $_SERVER['REQUEST_URI'];
+    $json_data = json_encode($data);
+    $log = fopen(ERROR_LOG, "a");
+    fwrite($log, "[${uri}@${date}] - ${error}\n");
+    if (count($data) > 0) {
+        fwrite($log, "Additional data: ${json_data}\n");
+    }
+    fclose($log);
+}
+
+function log_action($action_name, $data = []) {
+    $date = date("d-m-Y H:i:s");
+    $uri = $_SERVER['REQUEST_URI'];
+    $json_data = json_encode($data);
+    $log = fopen(USAGE_LOG, "a");
+    fwrite($log, "[${uri}@${date}] - ${action_name}\n");
+    if (count($data) > 0) {
+        fwrite($log, "Additional data: ${json_data}\n");
+    }
+    fclose($log);
+}
+
+log_action("page load");
