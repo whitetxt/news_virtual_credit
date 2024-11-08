@@ -12,6 +12,11 @@ if (!logged_in()) {
 
 $me = current_user();
 
+if (!$me->has_permission("SELF_CHARGE")) {
+    log_error('Insufficient Permissions', ['me' => $me, 'POST' => $_POST]);
+    die(json_encode(["success" => false, "error" => "Insufficient permissions."]));
+}
+
 $amount = floatval($_POST["amount"]);
 
 require_once DB_PATH . "/money.php";
