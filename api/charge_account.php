@@ -11,7 +11,7 @@ if (!logged_in()) {
 }
 
 $me = current_user();
-if (!$me->has_permission("ADMIN") && $me->has_permission("SCAN")) {
+if (!$me->has_permission("SCAN")) {
     log_error('Insufficient Permissions', ['me' => $me, 'POST' => $_POST]);
     die(json_encode(["success" => false, "error" => "Insufficient permissions."]));
 }
